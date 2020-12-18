@@ -55,7 +55,7 @@ class App extends Component {
                   {({ match }) => (
                     <CustomCSSTransition
                       in={match != null}
-                      timeout={{ enter: 700, exit: 200 }}
+                      timeout={{ enter: 400, exit: 100 }}
                       classNames="page"
                       unmountOnExit
                     >

@@ -44,6 +44,15 @@ export const NavBar = {
   `,
 }
 
+export const NonAnimationTransition = styled.div`
+  position: absolute;
+  text-align: left;
+  width: auto;
+  top: relative;
+  left: 15px;
+  right: 15px;
+`;
+
 export const CustomCSSTransition = styled(CSSTransition)`
   position: absolute;
   text-align: left;
@@ -60,7 +69,7 @@ export const CustomCSSTransition = styled(CSSTransition)`
   &.page-enter-active {
     opacity: 1;
     transform: scale(1);
-    transition: opacity 700ms, transform 700ms;
+    transition: opacity 400ms, transform 400ms;
   }
 
   &.page-exit {
