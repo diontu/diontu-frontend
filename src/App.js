@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import Socials from "./components/Socials"
 import { NavLink, Route } from "react-router-dom"
-import { Container, NavBar, CustomCSSTransition } from "./StylesApp"
+import { Container, NavBar, CustomCSSTransition, NonAnimationTransition } from "./StylesApp"
 
 import Home from "./routes/Home"
 import About from "./routes/About"

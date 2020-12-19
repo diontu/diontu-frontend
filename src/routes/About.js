@@ -18,7 +18,7 @@ class About extends Component {
           <p>I like using different technologies to help me efficiently build cool things, but I generally use the following technologies:</p>
           <ul>
             {techStack.map((tech) => (
-              <li>{tech}</li>
+              <li key={tech}>{tech}</li>
             ))}
           </ul>
         </div>
