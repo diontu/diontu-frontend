@@ -1,3 +1,3 @@
 ## My Website!
 
-This is a static website showcasing the things I've built and currently building.
+This is a static website showcasing the things I have built and am currently building.
