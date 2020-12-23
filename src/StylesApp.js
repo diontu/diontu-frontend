@@ -51,7 +51,7 @@ export const NonAnimationTransition = styled.div`
   top: relative;
   left: 15px;
   right: 15px;
-`;
+`
 
 export const CustomCSSTransition = styled(CSSTransition)`
   position: absolute;
