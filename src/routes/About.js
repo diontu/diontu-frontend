@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 
-const techStack = ["React", "NodeJS", "Java", "C", "MongoDB", "PostgreSQL", "Docker", "Git"]
+const techStack = ["React", "NodeJS", "Java", "C", "MongoDB", "PostgreSQL", "Git", "Docker", "AWS", "Heroku", "VSCode", "Confluence", "Figma"]
 
 class About extends Component {
   render() {
@@ -19,7 +19,7 @@ class About extends Component {
             date of May 2021.
           </p>
           <p>
-            I like using different technologies to help me efficiently build cool things, but I
+            I like using different technologies to help me efficiently build cool things and document them, but I
             generally use the following technologies:
           </p>
           <ul>
