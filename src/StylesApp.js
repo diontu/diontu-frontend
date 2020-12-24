@@ -5,7 +5,6 @@ import { Link } from "react-router-dom"
 export const Container = styled.div`
   position: relative;
   width: 800;
-  height: auto;
 `
 
 export const NavBar = {
