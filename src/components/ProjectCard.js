@@ -3,10 +3,12 @@ import { ProjectImg, ProjectOverlay, Container } from "./styles/ProjectCardStyle
 
 class ProjectCard extends Component {
   render() {
+    const { name, path, img } = this.props
+
     return (
       <Container>
-        <ProjectImg src={window.location.origin + "/logo192.png"} alt="Project_Img" />
-        <ProjectOverlay href="#">This is the Overlay</ProjectOverlay>
+        <ProjectImg src={window.location.origin + "/logo192.png"} alt={`${name}_img`} />
+        <ProjectOverlay href={path}>{name}</ProjectOverlay>
       </Container>
     )
   }
