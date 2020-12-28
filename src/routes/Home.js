@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import TechStack from "./../components/TechStack"
 
 class Home extends Component {
   render() {
@@ -9,6 +10,7 @@ class Home extends Component {
           This is my personal website where I showcase my projects and write about 
           technical topics in my blog that I find are interesting.
         </p>
+        <TechStack />
       </div>
     )
   }
