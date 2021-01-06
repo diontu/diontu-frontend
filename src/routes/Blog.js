@@ -1,7 +1,22 @@
 import React, { Component } from "react"
 import BlogCard from "../components/BlogCard"
+import axios from 'axios'
 
 class Blog extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      blogs: []
+    }
+  }
+
+  async componentDidMount() {
+    const blogs = await axios.get(`${this.props.backendURI}/blogs`);
+    this.setState({
+      blogs: blogs.data
+    })
+  }
+
   render() {
     return (
       <div>
@@ -15,8 +30,9 @@ class Blog extends Component {
         <p>
           This is <strong>mainly opinionated</strong> and any sourced information is credited.
         </p>
-        <BlogCard title="title" desc="description"></BlogCard>
-        <BlogCard title="title" desc="description"></BlogCard>
+        {this.state.blogs.map((blog) => (
+          <BlogCard key={blog._id} title={blog.blogTitle} preview={blog.blogPreview}></BlogCard>
+        ))}
       </div>
     )
   }

@@ -68,7 +68,7 @@ export const CustomCSSTransition = styled(CSSTransition)`
   &.page-enter-active {
     opacity: 1;
     transform: scale(1);
-    transition: opacity 400ms, transform 400ms;
+    transition: opacity 350ms, transform 350ms;
   }
 
   &.page-exit {

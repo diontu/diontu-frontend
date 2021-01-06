@@ -20,7 +20,7 @@ class BlogCard extends Component {
       >
         <Card.Body>
           <Card.Title>{this.props.title}</Card.Title>
-          <Card.Text>{this.props.desc}</Card.Text>
+          <Card.Text>{this.props.preview}</Card.Text>
           <Card.Link href="#">More...</Card.Link>
         </Card.Body>
       </Card>

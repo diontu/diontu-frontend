@@ -28,6 +28,9 @@ class App extends Component {
   }
 
   render() {
+
+    const backendURI = 'http://localhost:8000';
+
     return (
       <div style={{ textAlign: "center", margin: "auto", width: "900px" }}>
         <Socials />
@@ -60,7 +63,7 @@ class App extends Component {
                       unmountOnExit
                     >
                       <div>
-                        <Component />
+                        <Component backendURI={backendURI}/>
                       </div>
                     </CustomCSSTransition>
                   )}
