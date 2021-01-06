@@ -1,19 +1,19 @@
 import React, { Component } from "react"
 import BlogCard from "../components/BlogCard"
-import axios from 'axios'
+import axios from "axios"
 
 class Blog extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      blogs: []
+      blogs: [],
     }
   }
 
   async componentDidMount() {
-    const blogs = await axios.get(`${this.props.backendURI}/blogs`);
+    const blogs = await axios.get(`${this.props.backendURI}/blogs`)
     this.setState({
-      blogs: blogs.data
+      blogs: blogs.data,
     })
   }
 
