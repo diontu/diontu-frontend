@@ -12,6 +12,7 @@ class Login extends Component {
       showError: false,
       redirectToDashboard: "/dashboard"
     }
+    axios.defaults.withCredentials = true
   }
 
   async componentDidMount() {
@@ -20,7 +21,6 @@ class Login extends Component {
       this.props.history.push(this.state.redirectToDashboard)
     } catch (err) {
       //do nothing
-      console.log('hello')
     }
   }
 

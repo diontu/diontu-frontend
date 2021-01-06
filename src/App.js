@@ -69,9 +69,9 @@ class App extends Component {
             {adminLinks.map(({ path, name, Component }) => (
               <Route key={path} path={path}>
                 {({ match }) => (
-
+                  <div>
                     <Component backendURI={backendURI} />
-
+                  </div>
                 )}
               </Route>
             ))}
