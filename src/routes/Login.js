@@ -1,35 +1,86 @@
 import React, { Component } from "react"
+import { withRouter } from 'react-router-dom' 
 import axios from "axios"
+import { Alert } from 'react-bootstrap'
 
 class Login extends Component {
   constructor(props) {
     super(props)
     this.state = {
-        username: '',
-        password: ''
+      username: "",
+      password: "",
+      showError: false,
+      redirectToDashboard: "/dashboard"
+    }
+  }
+
+  async componentDidMount() {
+    try {
+      await axios.get(`${this.props.backendURI}/dashboard`)
+      this.props.history.push(this.state.redirectToDashboard)
+    } catch (err) {
+      //do nothing
+      console.log('hello')
     }
   }
 
   handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
     })
   }
 
-  submitForm = () => {
-      // make the axios post call with the data in json format
+  //return response based on successful call or not (unsuccessful = status codes 400)
+  submitForm = async () => {
+    //make the axios post call with the data in json format
+    try {
+      this.setState({ showError: false })
+      const res = await axios.post(`${this.props.backendURI}/login/authenticate`, {
+        username: this.state.username,
+        password: this.state.password,
+      })
+      //redirect the page to the dashboard
+      this.props.history.push(this.state.redirectToDashboard)
+    } catch (err) {
+      this.setState({ showError: true })
+    }
   }
+
+  displayError = () => (
+    <Alert variant="danger">
+      Incorrect username or password!
+    </Alert>
+  )
 
   render() {
     return (
       <div>
-        <div style={{ textAlign: 'center' }}>
+        <div style={{ textAlign: "center" }}>
           <h1>Login</h1>
         </div>
-        <div></div>
+        {this.state.showError
+          ? this.displayError()
+        : null}
+        <div>
+          <input
+            type="text"
+            name="username"
+            placeholder="username"
+            onChange={this.handleChange}
+          ></input>
+        </div>
+        <div>
+          <input
+            type="text"
+            name="password"
+            placeholder="password"
+            onChange={this.handleChange}
+          ></input>
+        </div>
+        <button onClick={this.submitForm}>Log in</button>
       </div>
     )
   }
 }
 
-export default Login
+export default withRouter(Login)
