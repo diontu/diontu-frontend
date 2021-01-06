@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import Socials from "./components/Socials"
-import { NavLink, Route } from "react-router-dom"
+import { NavLink, Route, Switch } from "react-router-dom"
 import { Container, NavBar, CustomCSSTransition, NonAnimationTransition } from "./StylesApp"
 
 import Home from "./routes/Home"
@@ -65,15 +65,17 @@ class App extends Component {
     if (this.state.isAdminLink) {
       return (
         <div style={{ textAlign: "center", margin: "auto", width: "900px" }}>
-          {adminLinks.map(({ path, name, Component }) => (
-            <Route key={path} path={path}>
-              {({ match }) => (
-                <div>
-                  <Component backendURI={backendURI} />
-                </div>
-              )}
-            </Route>
-          ))}
+          <Switch>
+            {adminLinks.map(({ path, name, Component }) => (
+              <Route key={path} path={path}>
+                {({ match }) => (
+                  <div>
+                    <Component backendURI={backendURI} />
+                  </div>
+                )}
+              </Route>
+            ))}
+          </Switch>
         </div>
       )
     } else {
