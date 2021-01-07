@@ -1,7 +1,7 @@
 import React, { Component } from "react"
-import { withRouter } from 'react-router-dom' 
+import { withRouter } from "react-router-dom"
 import axios from "axios"
-import { Alert } from 'react-bootstrap'
+import { Alert } from "react-bootstrap"
 
 class Login extends Component {
   constructor(props) {
@@ -10,7 +10,7 @@ class Login extends Component {
       username: "",
       password: "",
       showError: false,
-      redirectToDashboard: "/dashboard"
+      redirectToDashboard: "/dashboard",
     }
     axios.defaults.withCredentials = true
   }
@@ -46,11 +46,7 @@ class Login extends Component {
     }
   }
 
-  displayError = () => (
-    <Alert variant="danger">
-      Incorrect username or password!
-    </Alert>
-  )
+  displayError = () => <Alert variant="danger">Incorrect username or password!</Alert>
 
   render() {
     return (
@@ -58,9 +54,7 @@ class Login extends Component {
         <div style={{ textAlign: "center" }}>
           <h1>Login</h1>
         </div>
-        {this.state.showError
-          ? this.displayError()
-        : null}
+        {this.state.showError ? this.displayError() : null}
         <div>
           <input
             type="text"

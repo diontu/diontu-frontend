@@ -10,7 +10,7 @@ class Dashboard extends Component {
     this.state = {
       numberOfBlogs: 0,
       blogs: [],
-      redirectToLogin: "/login"
+      redirectToLogin: "/login",
     }
     axios.defaults.withCredentials = true
   }
@@ -27,7 +27,7 @@ class Dashboard extends Component {
         this.setState({ numberOfBlogs: this.state.numberOfBlogs + 1 })
       }
       //add hidden state to each blog
-      let newBlogsState = this.state.blogs.map(blog => {
+      let newBlogsState = this.state.blogs.map((blog) => {
         let newBlogState = Object.assign({}, blog)
         newBlogState.hidden = true
         return newBlogState
@@ -35,7 +35,6 @@ class Dashboard extends Component {
 
       this.setState({ blogs: newBlogsState })
       console.log(this.state.blogs)
-
     } catch (err) {
       //redirect user to login if not logged in
       this.props.history.push(this.state.redirectToLogin)
@@ -43,9 +42,9 @@ class Dashboard extends Component {
   }
 
   _handleBlogClick = (event) => {
-    //expand 
+    //expand
     event.preventDefault()
-    this.setState((prevState, props) => { 
+    this.setState((prevState, props) => {
       let newBlogsState = prevState.blogs
       if (event.target.id !== "") {
         newBlogsState[event.target.id].hidden = !newBlogsState[event.target.id].hidden
@@ -61,12 +60,15 @@ class Dashboard extends Component {
         <div>
           {this.state.blogs.map((blog) => (
             // make whole line a button that will make text area for the blog appear
-            <div key={blog.blogTitle} style={{
-              borderTop: "solid",
-              borderWidth: "1px",
-              borderColor: "#A8A8A8",
-            }}>
-              <a 
+            <div
+              key={blog.blogTitle}
+              style={{
+                borderTop: "solid",
+                borderWidth: "1px",
+                borderColor: "#A8A8A8",
+              }}
+            >
+              <a
                 href="/"
                 onClick={this._handleBlogClick}
                 style={{
@@ -75,27 +77,27 @@ class Dashboard extends Component {
                   width: "100%",
                 }}
               >
-                <div id={blog.index} style={{
-                  display: "inline-block",
-                  width: "97%",
-                }}>
+                <div
+                  id={blog.index}
+                  style={{
+                    display: "inline-block",
+                    width: "97%",
+                  }}
+                >
                   {blog.blogTitle}
                 </div>
-                <div id={blog.index} style={{
-                  display: "inline-block",
-                  width: "3%",
-                }}>
-                  {blog.hidden
-                    ? <GrFormAdd id={blog.index}/> 
-                  : <GrFormSubtract id={blog.index}/>}
+                <div
+                  id={blog.index}
+                  style={{
+                    display: "inline-block",
+                    width: "3%",
+                  }}
+                >
+                  {blog.hidden ? <GrFormAdd id={blog.index} /> : <GrFormSubtract id={blog.index} />}
                 </div>
               </a>
               {/* this is the blog editing place */}
-              {!blog.hidden
-                ? <div>
-                  
-                </div>
-              : null}
+              {!blog.hidden ? <div></div> : null}
             </div>
           ))}
         </div>
