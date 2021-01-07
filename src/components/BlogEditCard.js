@@ -6,6 +6,6 @@ class BlogEditCard extends Component {
     super(props)
   }
   render() {
-    ;<div></div>
+    return <div></div>
   }
 }
