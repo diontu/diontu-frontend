@@ -53,13 +53,9 @@ class Dashboard extends Component {
     })
   }
 
-  _handleCreateBlog = (event) => {
+  _handleCreateBlog = (event) => {}
 
-  }
-
-  _handleDeleteBlog = (event) => {
-
-  }
+  _handleDeleteBlog = (event) => {}
 
   render() {
     return (

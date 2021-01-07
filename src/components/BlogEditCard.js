@@ -12,54 +12,68 @@ class BlogEditCard extends Component {
 
   render() {
     return (
-      <div style={{ 
+      <div
+        style={{
           display: "inline-block",
-          width: "100%" 
-        }}>
+          width: "100%",
+        }}
+      >
         {/* BlogTitle */}
         <div>
-          <div style={{
-            display: "inline-block",
-            width: "20%"
-          }}>
-              {/* Title */}
+          <div
+            style={{
+              display: "inline-block",
+              width: "20%",
+            }}
+          >
+            {/* Title */}
           </div>
-          <div style={{
-            display: "inline-block",
-            width: "80%"
-          }}>
-              {/* Blog Title Edit Box */}
-          </div>  
+          <div
+            style={{
+              display: "inline-block",
+              width: "80%",
+            }}
+          >
+            {/* Blog Title Edit Box */}
+          </div>
         </div>
         {/* Blog Preview */}
         <div>
-          <div style={{
-            display: "inline-block",
-            width: "20%"
-          }}>
-              {/* Preview */}
+          <div
+            style={{
+              display: "inline-block",
+              width: "20%",
+            }}
+          >
+            {/* Preview */}
           </div>
-          <div style={{
-            display: "inline-block",
-            width: "80%"
-          }}>
-              {/* Blog Preview Edit Box */}
-          </div>  
+          <div
+            style={{
+              display: "inline-block",
+              width: "80%",
+            }}
+          >
+            {/* Blog Preview Edit Box */}
+          </div>
         </div>
         {/* BlogDescription */}
         <div>
-          <div style={{
-            display: "inline-block",
-            width: "20%"
-          }}>
-              {/* Title */}
+          <div
+            style={{
+              display: "inline-block",
+              width: "20%",
+            }}
+          >
+            {/* Title */}
           </div>
-          <div style={{
-            display: "inline-block",
-            width: "80%"
-          }}>
-              {/* Blog Description Edit Box */}
-          </div>  
+          <div
+            style={{
+              display: "inline-block",
+              width: "80%",
+            }}
+          >
+            {/* Blog Description Edit Box */}
+          </div>
         </div>
       </div>
     )
