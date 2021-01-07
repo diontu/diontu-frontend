@@ -53,10 +53,19 @@ class Dashboard extends Component {
     })
   }
 
+  _handleCreateBlog = (event) => {
+
+  }
+
+  _handleDeleteBlog = (event) => {
+
+  }
+
   render() {
     return (
       <div style={{ textAlign: "left" }}>
         <h1>Blogs</h1>
+
         <div>
           {this.state.blogs.map((blog) => (
             // make whole line a button that will make text area for the blog appear
