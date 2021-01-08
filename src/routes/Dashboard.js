@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { withRouter } from "react-router-dom"
 import axios from "axios"
+import BlogEditCard from "./../components/BlogEditCard"
 
 import { GrFormAdd, GrFormSubtract } from "react-icons/gr"
 
@@ -26,9 +27,23 @@ class Dashboard extends Component {
         blog.index = this.state.numberOfBlogs
         this.setState({ numberOfBlogs: this.state.numberOfBlogs + 1 })
       }
-      //add hidden state to each blog
+      //add hidden state as well as state for Title, Preview, Desc, to each blog
       let newBlogsState = this.state.blogs.map((blog) => {
         let newBlogState = Object.assign({}, blog)
+        newBlogState.newTitle = ""
+        newBlogState.newPreview = ""
+        newBlogState.newDesc = ""
+        newBlogState.onChangeTitle = (changedTitle) => {
+          newBlogState.newTitle = changedTitle
+        }
+      
+        newBlogState.onChangePreview = (changedPreview) => {
+          newBlogState.newPreview = changedPreview
+        }
+      
+        newBlogState.onChangeDesc = (changedDesc) => {
+          newBlogState.newDesc = changedDesc
+        }
         newBlogState.hidden = true
         return newBlogState
       })
@@ -69,7 +84,7 @@ class Dashboard extends Component {
               key={blog.blogTitle}
               style={{
                 borderTop: "solid",
-                borderWidth: "1px",
+                borderWidth: "2px",
                 borderColor: "#A8A8A8",
               }}
             >
@@ -77,6 +92,7 @@ class Dashboard extends Component {
                 href="/"
                 onClick={this._handleBlogClick}
                 style={{
+                  padding: '10px',
                   textDecoration: "none",
                   display: "inline-block",
                   width: "100%",
@@ -102,7 +118,7 @@ class Dashboard extends Component {
                 </div>
               </a>
               {/* this is the blog editing place */}
-              {!blog.hidden ? <div></div> : null}
+              {!blog.hidden ? <BlogEditCard blog={blog}/> : null}
             </div>
           ))}
         </div>
