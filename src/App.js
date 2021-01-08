@@ -60,7 +60,7 @@ class App extends Component {
         break
       default:
         this.setState({ isAdminLink: false })
-        break 
+        break
     }
   }
 
@@ -95,19 +95,19 @@ class App extends Component {
           <NavBar.Div>
             <NavBar.Links>
               {links
-                ? links.map((link) => (
-                    !link.hidden 
-                      ? <NavBar.LinkItem
-                          key={link.path}
-                          to={link.path}
-                          as={NavLink}
-                          style={this.state.active === link.path ? { color: "black" } : {}}
-                          onClick={this._handleClick.bind(this, link.path)}
-                        >
-                          {link.name}
-                        </NavBar.LinkItem>
-                      : null
-                  ))
+                ? links.map((link) =>
+                    !link.hidden ? (
+                      <NavBar.LinkItem
+                        key={link.path}
+                        to={link.path}
+                        as={NavLink}
+                        style={this.state.active === link.path ? { color: "black" } : {}}
+                        onClick={this._handleClick.bind(this, link.path)}
+                      >
+                        {link.name}
+                      </NavBar.LinkItem>
+                    ) : null
+                  )
                 : null}
             </NavBar.Links>
           </NavBar.Div>

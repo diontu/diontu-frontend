@@ -28,7 +28,8 @@ class Blog extends Component {
           about, send me an email, which can be found over at the <em>Contact</em> page.
         </p>
         <p>
-          The content in this blog are based on my <strong>personal experiences</strong>. Any sourced information is credited.
+          The content in this blog are based on my <strong>personal experiences</strong>. Any
+          sourced information is credited.
         </p>
         {this.state.blogs.map((blog) => (
           <BlogCard key={blog._id} blog={blog}></BlogCard>

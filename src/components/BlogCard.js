@@ -3,7 +3,7 @@ import { withRouter } from "react-router-dom"
 import { Card } from "react-bootstrap"
 
 class BlogCard extends Component {
-  constructor({blog, history}) {
+  constructor({ blog, history }) {
     super()
     this.blog = blog
     this.history = history
@@ -11,8 +11,8 @@ class BlogCard extends Component {
   }
 
   _handleMoreInfoClick = (event) => {
-    event.preventDefault();
-    this.history.push(this.urlPath);
+    event.preventDefault()
+    this.history.push(this.urlPath)
   }
 
   render() {
@@ -30,7 +30,9 @@ class BlogCard extends Component {
         <Card.Body>
           <Card.Title>{this.blog.blogTitle}</Card.Title>
           <Card.Text>{this.blog.blogPreview}</Card.Text>
-          <Card.Link href={this.urlPath} onClick={this._handleMoreInfoClick}>More...</Card.Link>
+          <Card.Link href={this.urlPath} onClick={this._handleMoreInfoClick}>
+            More...
+          </Card.Link>
         </Card.Body>
       </Card>
     )
