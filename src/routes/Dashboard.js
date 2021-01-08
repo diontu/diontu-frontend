@@ -36,11 +36,11 @@ class Dashboard extends Component {
         newBlogState.onChangeTitle = (changedTitle) => {
           newBlogState.newTitle = changedTitle
         }
-      
+
         newBlogState.onChangePreview = (changedPreview) => {
           newBlogState.newPreview = changedPreview
         }
-      
+
         newBlogState.onChangeDesc = (changedDesc) => {
           newBlogState.newDesc = changedDesc
         }
@@ -92,7 +92,7 @@ class Dashboard extends Component {
                 href="/"
                 onClick={this._handleBlogClick}
                 style={{
-                  padding: '10px',
+                  padding: "10px",
                   textDecoration: "none",
                   display: "inline-block",
                   width: "100%",
@@ -118,7 +118,7 @@ class Dashboard extends Component {
                 </div>
               </a>
               {/* this is the blog editing place */}
-              {!blog.hidden ? <BlogEditCard blog={blog}/> : null}
+              {!blog.hidden ? <BlogEditCard blog={blog} /> : null}
             </div>
           ))}
         </div>

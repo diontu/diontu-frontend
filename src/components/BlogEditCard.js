@@ -6,13 +6,13 @@ class BlogEditCard extends Component {
   // requires 3 methods to change the state of the variables that was used to render this
   // REQUIRED OBJECT:
   // blog - object which contains the following methods and variables
-  // REQUIRED VARIABLES: 
+  // REQUIRED VARIABLES:
   // title, preview, desc
   // REQUIRED METHODS from object:
   // onChangeTitle(changedTitle)
   // onChangePreview(changedPreview)
   // onChangeDesc(changedDesc)
-  constructor({blog}) {
+  constructor({ blog }) {
     super()
     this.title = blog.blogTitle
     this.preview = blog.blogPreview
@@ -33,7 +33,7 @@ class BlogEditCard extends Component {
           </div>
           <div style={styles.editBoxDiv}>
             {/* Blog Title Edit Box */}
-            <Editor currentContent={this.title} onChangeState={this.onChangeTitle}/>
+            <Editor currentContent={this.title} onChangeState={this.onChangeTitle} />
           </div>
         </div>
         {/* Blog Preview Section */}
@@ -44,7 +44,7 @@ class BlogEditCard extends Component {
           </div>
           <div style={styles.editBoxDiv}>
             {/* Blog Preview Edit Box */}
-            <Editor currentContent={this.preview} onChangeState={this.onChangePreview}/>
+            <Editor currentContent={this.preview} onChangeState={this.onChangePreview} />
           </div>
         </div>
         {/* BlogDescription Section */}
@@ -55,19 +55,12 @@ class BlogEditCard extends Component {
           </div>
           <div style={styles.editBoxDiv}>
             {/* Blog Description Edit Box */}
-            <Editor currentContent={this.desc} onChangeState={this.onChangeDesc}/>
+            <Editor currentContent={this.desc} onChangeState={this.onChangeDesc} />
           </div>
         </div>
         <div style={styles.buttonsDiv}>
-          <Button
-            style={styles.buttonStyle}
-          >
-            Save
-          </Button>
-          <Button
-            variant="secondary"
-            style={styles.buttonStyle}
-          >
+          <Button style={styles.buttonStyle}>Save</Button>
+          <Button variant="secondary" style={styles.buttonStyle}>
             Cancel
           </Button>
         </div>
@@ -87,7 +80,7 @@ const styles = {
     padding: "13px",
     width: "20%",
     verticalAlign: "top",
-    textAlign: "center"
+    textAlign: "center",
   },
   editBoxDiv: {
     display: "inline-block",
@@ -100,7 +93,7 @@ const styles = {
   buttonStyle: {
     marginLeft: "7px",
     marginRight: "7px",
-  }
+  },
 }
 
 export default BlogEditCard
