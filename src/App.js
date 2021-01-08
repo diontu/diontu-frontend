@@ -6,16 +6,18 @@ import { Container, NavBar, CustomCSSTransition, NonAnimationTransition } from "
 import Home from "./routes/Home"
 import About from "./routes/About"
 import Contact from "./routes/Contact"
+import BlogHome from "./routes/BlogHome"
 import Blog from "./routes/Blog"
 import Login from "./routes/Login"
 import Dashboard from "./routes/Dashboard"
 import CreateBlog from "./routes/CreateBlog"
 
 const links = [
-  { path: "/", name: "Home", Component: Home },
-  { path: "/about", name: "About", Component: About },
-  { path: "/contact", name: "Contact", Component: Contact },
-  { path: "/blog", name: "Blog", Component: Blog },
+  { path: "/", name: "Home", Component: Home, hidden: false },
+  { path: "/about", name: "About", Component: About, hidden: false },
+  { path: "/contact", name: "Contact", Component: Contact, hidden: false },
+  { path: "/blog", name: "Blog", Component: BlogHome, hidden: false },
+  { path: "/blog/:blogId", name: "Blog", Component: Blog, hidden: true },
 ]
 
 const adminLinks = [
@@ -56,6 +58,9 @@ class App extends Component {
       case "/dashboard/create/blog":
         this.setState({ isAdminLink: true })
         break
+      default:
+        this.setState({ isAdminLink: false })
+        break 
     }
   }
 
@@ -91,15 +96,17 @@ class App extends Component {
             <NavBar.Links>
               {links
                 ? links.map((link) => (
-                    <NavBar.LinkItem
-                      key={link.path}
-                      to={link.path}
-                      as={NavLink}
-                      style={this.state.active === link.path ? { color: "black" } : {}}
-                      onClick={this._handleClick.bind(this, link.path)}
-                    >
-                      {link.name}
-                    </NavBar.LinkItem>
+                    !link.hidden 
+                      ? <NavBar.LinkItem
+                          key={link.path}
+                          to={link.path}
+                          as={NavLink}
+                          style={this.state.active === link.path ? { color: "black" } : {}}
+                          onClick={this._handleClick.bind(this, link.path)}
+                        >
+                          {link.name}
+                        </NavBar.LinkItem>
+                      : null
                   ))
                 : null}
             </NavBar.Links>

@@ -1,9 +1,18 @@
 import React, { Component } from "react"
+import { withRouter } from "react-router-dom"
 import { Card } from "react-bootstrap"
 
 class BlogCard extends Component {
-  constructor(props) {
-    super(props)
+  constructor({blog, history}) {
+    super()
+    this.blog = blog
+    this.history = history
+    this.urlPath = `/blog/${blog.blogTitle.trim().replace(" ", "-").toLowerCase()}`
+  }
+
+  _handleMoreInfoClick = (event) => {
+    event.preventDefault();
+    this.history.push(this.urlPath);
   }
 
   render() {
@@ -19,13 +28,13 @@ class BlogCard extends Component {
         }}
       >
         <Card.Body>
-          <Card.Title>{this.props.title}</Card.Title>
-          <Card.Text>{this.props.preview}</Card.Text>
-          <Card.Link href="#">More...</Card.Link>
+          <Card.Title>{this.blog.blogTitle}</Card.Title>
+          <Card.Text>{this.blog.blogPreview}</Card.Text>
+          <Card.Link href={this.urlPath} onClick={this._handleMoreInfoClick}>More...</Card.Link>
         </Card.Body>
       </Card>
     )
   }
 }
 
-export default BlogCard
+export default withRouter(BlogCard)
