@@ -22,12 +22,20 @@ class Dashboard extends Component {
       await axios.get(`${this.props.backendURI}/dashboard`)
       const blogs = await axios.get(`${this.props.backendURI}/blogs`)
       this.setState({ blogs: blogs.data })
-      //add index to each blog
+      //Extra state for each blog:
+      // VAR - index
       for (var blog of this.state.blogs) {
         blog.index = this.state.numberOfBlogs
         this.setState({ numberOfBlogs: this.state.numberOfBlogs + 1 })
       }
-      //add hidden state as well as state for Title, Preview, Desc, to each blog
+      //Extra States for each blog:
+      // VAR - hidden 
+      // VAR - newTitle 
+      // VAR - newPreview 
+      // VAR - newDesc
+      // MET - onChangeTitle
+      // MET - onChangePreview
+      // MET - onChangeDesc 
       let newBlogsState = this.state.blogs.map((blog) => {
         let newBlogState = Object.assign({}, blog)
         newBlogState.newTitle = ""
