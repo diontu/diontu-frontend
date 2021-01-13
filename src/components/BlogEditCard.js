@@ -22,6 +22,14 @@ class BlogEditCard extends Component {
     this.onChangeDesc = blog.onChangeDesc
   }
 
+  _handleSave = (event) => {
+
+  }
+
+  _handleCancel = (event) => {
+
+  }
+  
   render() {
     return (
       <div style={styles.sectionDiv}>

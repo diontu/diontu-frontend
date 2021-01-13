@@ -78,8 +78,6 @@ class Dashboard extends Component {
 
   _handleCreateBlog = (event) => {}
 
-  _handleDeleteBlog = (event) => {}
-
   render() {
     return (
       <div style={{ textAlign: "left" }}>
