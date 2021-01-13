@@ -42,15 +42,15 @@ class Dashboard extends Component {
         newBlogState.newPreview = ""
         newBlogState.newDesc = ""
         newBlogState.onChangeTitle = (changedTitle) => {
-          newBlogState.newTitle = changedTitle
+          this.newTitle = changedTitle
         }
 
         newBlogState.onChangePreview = (changedPreview) => {
-          newBlogState.newPreview = changedPreview
+          this.newPreview = changedPreview
         }
 
         newBlogState.onChangeDesc = (changedDesc) => {
-          newBlogState.newDesc = changedDesc
+          this.newDesc = changedDesc
         }
         newBlogState.hidden = true
         return newBlogState
@@ -74,6 +74,7 @@ class Dashboard extends Component {
       }
       return { blogs: newBlogsState }
     })
+    console.log(this.state)
   }
 
   _handleCreateBlog = (event) => {}
@@ -124,7 +125,7 @@ class Dashboard extends Component {
                 </div>
               </a>
               {/* this is the blog editing place */}
-              {!blog.hidden ? <BlogEditCard blog={blog} /> : null}
+              {!blog.hidden ? <BlogEditCard id={blog.index} blog={blog} _handleBlogClick={this._handleBlogClick} /> : null}
             </div>
           ))}
         </div>

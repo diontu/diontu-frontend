@@ -12,27 +12,68 @@ class BlogEditCard extends Component {
   // onChangeTitle(changedTitle)
   // onChangePreview(changedPreview)
   // onChangeDesc(changedDesc)
-  constructor({ blog }) {
+  constructor({ id, blog, _handleBlogClick }) {
     super()
+    this.blog = blog
     this.title = blog.blogTitle
     this.preview = blog.blogPreview
     this.desc = blog.blogDesc
     this.onChangeTitle = blog.onChangeTitle
     this.onChangePreview = blog.onChangePreview
     this.onChangeDesc = blog.onChangeDesc
+    this.id = id
+    //method
+    this._handleBlogClick = (event) => _handleBlogClick(event)
+    //state
+    this.state = {
+      performedChanges: false,
+      error: false
+    }
   }
 
-  _handleSave = (event) => {
+  _handleSave = async (event) => {
+    this.setState({ performedChanges: false })
+    //if title is different, then make changes to db
+    if (this.title !== this.blog.newTitle) {
+      try {
+
+        this.setState({ performedChanges: true })
+      } catch (err) {
+
+      }
+    }
+    //if preview is different, then make changes to db
+    if (this.preview !== this.blog.newPreview) {
+      try {
+
+        this.setState({ performedChanges: true })
+      } catch (err) {
+
+      }
+    }
+    //if description is different, then make changes to db
+    if (this.desc !== this.blog.newDesc) {
+      try {
+
+        this.setState({ performedChanges: true })
+      } catch (err) {
+
+      }
+    }
+  }
+
+  _handleDelete = async (event) => {
 
   }
 
-  _handleCancel = (event) => {
+  _handleCancel = (event) => this._handleBlogClick(event)
 
-  }
-  
   render() {
     return (
       <div style={styles.sectionDiv}>
+        <div style={styles.buttonsDiv}>
+          <Button variant="danger" style={styles.buttonStyle}>Delete</Button>
+        </div>
         {/* BlogTitle Section*/}
         <div>
           <div style={styles.headerDiv}>
@@ -68,7 +109,7 @@ class BlogEditCard extends Component {
         </div>
         <div style={styles.buttonsDiv}>
           <Button style={styles.buttonStyle}>Save</Button>
-          <Button variant="secondary" style={styles.buttonStyle}>
+          <Button id={this.id} variant="secondary" style={styles.buttonStyle} onClick={this._handleCancel}>
             Cancel
           </Button>
         </div>
