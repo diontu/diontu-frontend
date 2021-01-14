@@ -13,6 +13,9 @@ class TheEditor extends React.Component {
     this.state = {
       editorState: EditorState.createWithContent(ContentState.createFromText(`${currentContent}`)),
     }
+    // ensure newTitle, newPreview, and newDesc has currentContent 
+    onChangeState(id, currentContent)
+    
     this.onChange = (editorState) => {
       onChangeState(id, editorState.getCurrentContent().getPlainText())
       // console.log(editorState.getCurrentContent().getPlainText())

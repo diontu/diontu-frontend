@@ -15,15 +15,40 @@ class BlogEditCard extends Component {
   // onChangeDesc(changedDesc)
   constructor({ backendURI, id, blog, _handleBlogClick }) {
     super()
+    //blog
     this.blog = blog
+    let newBlogState = Object.assign({}, this.blog)
+    newBlogState.newTitle = ""
+    newBlogState.newPreview = ""
+    newBlogState.newDesc = ""
+    newBlogState.onChangeTitle = (id, changedTitle) => {
+      if (this.blog._id === id) {
+        this.blog.newTitle = changedTitle
+      }
+    }
+
+    newBlogState.onChangePreview = (id, changedPreview) => {
+      if (this.blog._id === id) {
+        this.blog.newPreview = changedPreview
+      }
+    }
+
+    newBlogState.onChangeDesc = (id, changedDesc) => {
+      if (this.blog._id === id) {
+        this.blog.newDesc = changedDesc
+      }
+    }
+    this.blog = newBlogState
+    //others
     this.title = blog.blogTitle
     this.preview = blog.blogPreview
     this.desc = blog.blogDesc
-    this.onChangeTitle = blog.onChangeTitle
-    this.onChangePreview = blog.onChangePreview
-    this.onChangeDesc = blog.onChangeDesc
+    this.onChangeTitle = this.blog.onChangeTitle
+    this.onChangePreview = this.blog.onChangePreview
+    this.onChangeDesc = this.blog.onChangeDesc
     this.id = id
     this.backendURI = backendURI
+    // console.log(this)
     //method
     this._handleBlogClick = (event) => _handleBlogClick(event)
     //state
@@ -37,9 +62,6 @@ class BlogEditCard extends Component {
     this.setState({ performedChanges: false })
     //if title is different, then make changes to db
     let requestBody = {}
-    console.log("_handleSave")
-    console.log(this.title)
-    console.log(this.blog.newTitle)
     if (this.title !== this.blog.newTitle) {
       requestBody.blogTitle = this.blog.newTitle
       this.setState({ performedChanges: true })

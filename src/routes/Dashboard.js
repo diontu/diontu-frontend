@@ -38,48 +38,6 @@ class Dashboard extends Component {
       // MET - onChangeDesc 
       let newBlogsState = this.state.blogs.map((blog) => {
         let newBlogState = Object.assign({}, blog)
-        newBlogState.newTitle = ""
-        newBlogState.newPreview = ""
-        newBlogState.newDesc = ""
-        newBlogState.onChangeTitle = (id, changedTitle) => {
-          console.log(changedTitle)
-          // let altBlogState = this.state.blogs
-          // for (let blog of altBlogState) {
-          //   if (blog._id === id) {
-          //     blog.newTitle = changedTitle
-          //   }
-          // }
-          let altBlogsState = this.state.blogs.map((blog) => {
-            let altBlogState = Object.assign({}, blog)
-            if (blog._id === id) {
-              altBlogState.newTitle = changedTitle
-            }
-            return altBlogState
-          })
-          // console.log(altBlogsState)
-          this.setState({ blogs: altBlogsState })
-        }
-
-        newBlogState.onChangePreview = (id, changedPreview) => {
-          let altBlogState = this.state.blogs
-          for (let blog of altBlogState) {
-            if (blog._id === id) {
-              blog.newPreview = changedPreview
-            }
-          }
-          // console.log(altBlogState)
-          this.setState({ blogs: altBlogState })
-        }
-
-        newBlogState.onChangeDesc = (id, changedDesc) => {
-          let altBlogState = this.state.blogs
-          for (let blog of altBlogState) {
-            if (blog._id === id) {
-              blog.newDesc = changedDesc
-            }
-          }
-          this.setState({ blogs: altBlogState })
-        }
         newBlogState.hidden = true
         return newBlogState
       })
