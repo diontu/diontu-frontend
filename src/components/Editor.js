@@ -17,7 +17,6 @@ class TheEditor extends React.Component {
       onChangeState(id, editorState.getCurrentContent().getPlainText())
       // console.log(editorState.getCurrentContent().getPlainText())
       this.setState({ editorState })
-      console.log("hi")
     }
   }
 

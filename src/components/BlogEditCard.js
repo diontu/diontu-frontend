@@ -93,7 +93,7 @@ class BlogEditCard extends Component {
           </div>
           <div style={styles.editBoxDiv}>
             {/* Blog Title Edit Box */}
-            <Editor currentContent={this.title} onChangeState={this.onChangeTitle} />
+            <Editor id={this.blog._id} currentContent={this.title} onChangeState={this.onChangeTitle} />
           </div>
         </div>
         {/* Blog Preview Section */}
@@ -104,7 +104,7 @@ class BlogEditCard extends Component {
           </div>
           <div style={styles.editBoxDiv}>
             {/* Blog Preview Edit Box */}
-            <Editor currentContent={this.preview} onChangeState={this.onChangePreview} />
+            <Editor id={this.blog._id} currentContent={this.preview} onChangeState={this.onChangePreview} />
           </div>
         </div>
         {/* BlogDescription Section */}
@@ -115,7 +115,7 @@ class BlogEditCard extends Component {
           </div>
           <div style={styles.editBoxDiv}>
             {/* Blog Description Edit Box */}
-            <Editor currentContent={this.desc} onChangeState={this.onChangeDesc} />
+            <Editor id={this.blog._id} currentContent={this.desc} onChangeState={this.onChangeDesc} />
           </div>
         </div>
         <div style={styles.buttonsDiv}>
