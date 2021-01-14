@@ -30,12 +30,6 @@ class Dashboard extends Component {
       }
       //Extra States for each blog:
       // VAR - hidden 
-      // VAR - newTitle 
-      // VAR - newPreview 
-      // VAR - newDesc
-      // MET - onChangeTitle
-      // MET - onChangePreview
-      // MET - onChangeDesc 
       let newBlogsState = this.state.blogs.map((blog) => {
         let newBlogState = Object.assign({}, blog)
         newBlogState.hidden = true
@@ -43,7 +37,6 @@ class Dashboard extends Component {
       })
 
       this.setState({ blogs: newBlogsState })
-      console.log(this.state.blogs)
     } catch (err) {
       //redirect user to login if not logged in
       this.props.history.push(this.state.redirectToLogin)
@@ -60,7 +53,6 @@ class Dashboard extends Component {
       }
       return { blogs: newBlogsState }
     })
-    console.log(this.state)
   }
 
   _handleCreateBlog = (event) => {}

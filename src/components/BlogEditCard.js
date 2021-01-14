@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import Editor from "./Editor"
-import { Button } from "react-bootstrap"
+import { Alert, Button } from "react-bootstrap"
 import axios from "axios"
 
 class BlogEditCard extends Component {
@@ -60,38 +60,32 @@ class BlogEditCard extends Component {
 
   _handleSave = async (event) => {
     this.setState({ performedChanges: false })
+
     //if title is different, then make changes to db
     let requestBody = {}
     if (this.title !== this.blog.newTitle) {
       requestBody.blogTitle = this.blog.newTitle
-      this.setState({ performedChanges: true })
-      console.log("1")
     } else {
       requestBody.blogTitle = this.blog.blogTitle
     }
     //if preview is different, then make changes to db
     if (this.preview !== this.blog.newPreview) {
       requestBody.blogPreview = this.blog.newPreview
-      this.setState({ performedChanges: true })
-      console.log("2")
     } else {
       requestBody.blogPreview = this.blog.blogPreview
     }
     //if description is different, then make changes to db
     if (this.desc !== this.blog.newDesc) {
       requestBody.blogDesc = this.blog.newDesc
-      this.setState({ performedChanges: true })
-      console.log("3")
     } else {
       requestBody.blogDesc = this.blog.blogDesc
     }
     //if performedChanges is true, then make the axios post call
-    console.log(this)
-    if (this.state.performedChanges) {
+    try {
       await axios.put(`${this.backendURI}/blogs/${this.blog._id}`, requestBody)
-      // console.log(requestBody)
-      // console.log(this)
-      // console.log(this.state)
+      this.setState({ performedChanges: true })
+    } catch (err) {
+
     }
   }
 
@@ -104,6 +98,12 @@ class BlogEditCard extends Component {
   render() {
     return (
       <div style={styles.sectionDiv}>
+        {this.state.performedChanges
+          ? <Alert variant="success">
+              This blog post has been updated... please refresh the page to view changes.
+            </Alert>
+          : null
+        }
         <div style={styles.buttonsDiv}>
           <Button variant="danger" style={styles.buttonStyle}>Delete</Button>
         </div>
