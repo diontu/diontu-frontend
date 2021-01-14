@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import Editor from "./Editor"
 import { Button } from "react-bootstrap"
+import axios from "axios"
 
 class BlogEditCard extends Component {
   // requires 3 methods to change the state of the variables that was used to render this
@@ -12,7 +13,7 @@ class BlogEditCard extends Component {
   // onChangeTitle(changedTitle)
   // onChangePreview(changedPreview)
   // onChangeDesc(changedDesc)
-  constructor({ id, blog, _handleBlogClick }) {
+  constructor({ backendURI, id, blog, _handleBlogClick }) {
     super()
     this.blog = blog
     this.title = blog.blogTitle
@@ -22,43 +23,53 @@ class BlogEditCard extends Component {
     this.onChangePreview = blog.onChangePreview
     this.onChangeDesc = blog.onChangeDesc
     this.id = id
+    this.backendURI = backendURI
     //method
     this._handleBlogClick = (event) => _handleBlogClick(event)
     //state
     this.state = {
       performedChanges: false,
-      error: false
+      error: false,
     }
   }
 
   _handleSave = async (event) => {
     this.setState({ performedChanges: false })
     //if title is different, then make changes to db
+    let requestBody = {}
+    console.log("_handleSave")
+    console.log(this.title)
+    console.log(this.blog.newTitle)
     if (this.title !== this.blog.newTitle) {
-      try {
-
-        this.setState({ performedChanges: true })
-      } catch (err) {
-
-      }
+      requestBody.blogTitle = this.blog.newTitle
+      this.setState({ performedChanges: true })
+      console.log("1")
+    } else {
+      requestBody.blogTitle = this.blog.blogTitle
     }
     //if preview is different, then make changes to db
     if (this.preview !== this.blog.newPreview) {
-      try {
-
-        this.setState({ performedChanges: true })
-      } catch (err) {
-
-      }
+      requestBody.blogPreview = this.blog.newPreview
+      this.setState({ performedChanges: true })
+      console.log("2")
+    } else {
+      requestBody.blogPreview = this.blog.blogPreview
     }
     //if description is different, then make changes to db
     if (this.desc !== this.blog.newDesc) {
-      try {
-
-        this.setState({ performedChanges: true })
-      } catch (err) {
-
-      }
+      requestBody.blogDesc = this.blog.newDesc
+      this.setState({ performedChanges: true })
+      console.log("3")
+    } else {
+      requestBody.blogDesc = this.blog.blogDesc
+    }
+    //if performedChanges is true, then make the axios post call
+    console.log(this)
+    if (this.state.performedChanges) {
+      await axios.put(`${this.backendURI}/blogs/${this.blog._id}`, requestBody)
+      // console.log(requestBody)
+      // console.log(this)
+      // console.log(this.state)
     }
   }
 
@@ -108,7 +119,7 @@ class BlogEditCard extends Component {
           </div>
         </div>
         <div style={styles.buttonsDiv}>
-          <Button style={styles.buttonStyle}>Save</Button>
+          <Button style={styles.buttonStyle} onClick={this._handleSave}>Save</Button>
           <Button id={this.id} variant="secondary" style={styles.buttonStyle} onClick={this._handleCancel}>
             Cancel
           </Button>

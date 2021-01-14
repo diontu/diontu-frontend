@@ -41,16 +41,41 @@ class Dashboard extends Component {
         newBlogState.newTitle = ""
         newBlogState.newPreview = ""
         newBlogState.newDesc = ""
-        newBlogState.onChangeTitle = (changedTitle) => {
-          this.newTitle = changedTitle
+        newBlogState.onChangeTitle = (id, changedTitle) => {
+          console.log(changedTitle)
+          let altBlogState = this.state.blogs
+          for (let blog of altBlogState) {
+            if (blog._id === id) {
+              blog.newTitle = changedTitle
+            }
+          }
+          // let altBlogState = this.state.blogs.map(() => {
+          //   let altBlogState = Object.assign({}, blog)
+          // })
+          // console.log(blog)
+          this.setState({ blogs: altBlogState })
         }
 
-        newBlogState.onChangePreview = (changedPreview) => {
-          this.newPreview = changedPreview
+        newBlogState.onChangePreview = (id, changedPreview) => {
+          console.log(changedPreview)
+          let altBlogState = this.state.blogs
+          for (let blog of altBlogState) {
+            if (blog._id === id) {
+              blog.newPreview = changedPreview
+            }
+          }
+          this.setState({ blogs: altBlogState })
         }
 
-        newBlogState.onChangeDesc = (changedDesc) => {
-          this.newDesc = changedDesc
+        newBlogState.onChangeDesc = (id, changedDesc) => {
+          console.log(changedDesc)
+          let altBlogState = this.state.blogs
+          for (let blog of altBlogState) {
+            if (blog._id === id) {
+              blog.newDesc = changedDesc
+            }
+          }
+          this.setState({ blogs: altBlogState })
         }
         newBlogState.hidden = true
         return newBlogState
@@ -125,7 +150,7 @@ class Dashboard extends Component {
                 </div>
               </a>
               {/* this is the blog editing place */}
-              {!blog.hidden ? <BlogEditCard id={blog.index} blog={blog} _handleBlogClick={this._handleBlogClick} /> : null}
+              {!blog.hidden ? <BlogEditCard backendURI={this.props.backendURI} id={blog.index} blog={blog} _handleBlogClick={this._handleBlogClick} /> : null}
             </div>
           ))}
         </div>

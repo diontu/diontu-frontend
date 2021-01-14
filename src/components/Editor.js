@@ -7,31 +7,24 @@ class TheEditor extends React.Component {
   // currentState - a string that contains the content
   // REQUIRED METHODS:
   // onChangeState(changedState) - method that changes the state of the content
-  constructor({ currentContent, onChangeState }) {
+  constructor({ id, currentContent, onChangeState }) {
     super()
+    // initiate state
     this.state = {
       editorState: EditorState.createWithContent(ContentState.createFromText(`${currentContent}`)),
     }
     this.onChange = (editorState) => {
-      onChangeState(editorState.getCurrentContent().getPlainText())
+      onChangeState(id, editorState.getCurrentContent().getPlainText())
       // console.log(editorState.getCurrentContent().getPlainText())
       this.setState({ editorState })
+      console.log("hi")
     }
-    this.focusEditor = () => {
-      if (this.editor) {
-        this.editor.focus()
-      }
-    }
-  }
-
-  componentDidMount() {
-    this.focusEditor()
   }
 
   render() {
     return (
       <div>
-        <div style={styles.editor} onClick={this.focusEditor}>
+        <div style={styles.editor}>
           <Editor editorState={this.state.editorState} onChange={this.onChange} />
         </div>
       </div>
