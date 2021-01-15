@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { withRouter } from "react-router-dom"
 import axios from "axios"
 import BlogEditCard from "./../components/BlogEditCard"
+import { Button, Alert } from "react-bootstrap"
 
 import { GrFormAdd, GrFormSubtract } from "react-icons/gr"
 
@@ -11,6 +12,7 @@ class Dashboard extends Component {
     this.state = {
       numberOfBlogs: 0,
       blogs: [],
+      createdBlog: false, 
       redirectToLogin: "/login",
     }
     axios.defaults.withCredentials = true
@@ -55,13 +57,46 @@ class Dashboard extends Component {
     })
   }
 
-  _handleCreateBlog = (event) => {}
+  _handleCreateBlog = async (event) => { 
+    try {
+      await axios.post(`${this.props.backendURI}/blogs`, {
+        blogTitle: "New Blog Title",
+        blogPreview: "New Blog Preview",
+        blogDesc: "New Blog Description",
+      })
+      this.setState({ createdBlog: true })
+    } catch (err) {
+
+    }
+  }
 
   render() {
     return (
       <div style={{ textAlign: "left" }}>
-        <h1>Blogs</h1>
-
+        <div style={{ margin: "10px" }}>
+          <div style={{
+            display: "inline-block",
+            width: "50%",
+          }}>
+            <h1>Blogs</h1>
+          </div>
+          <div style={{
+            display: "inline-block",
+            width: "50%",
+            textAlign: "right"
+          }}>
+            <Button 
+              variant="success"
+              onClick={this._handleCreateBlog}
+            >New Blog</Button>
+          </div>
+        </div>
+        {this.state.createdBlog
+          ? <Alert variant="success">
+            Created new blog... Refresh the page to see the changes!
+          </Alert>
+          : null
+        }
         <div>
           {this.state.blogs.map((blog) => (
             // make whole line a button that will make text area for the blog appear

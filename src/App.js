@@ -10,7 +10,6 @@ import BlogHome from "./routes/BlogHome"
 import Blog from "./routes/Blog"
 import Login from "./routes/Login"
 import Dashboard from "./routes/Dashboard"
-import CreateBlog from "./routes/CreateBlog"
 
 const links = [
   { path: "/", name: "Home", Component: Home, hidden: false },
@@ -23,7 +22,6 @@ const links = [
 const adminLinks = [
   { path: "/login", name: "Login", Component: Login },
   { path: "/dashboard", name: "Dashboard", Component: Dashboard },
-  { path: "/dashboard/create/blog", name: "CreateBlog", Component: CreateBlog },
 ]
 
 class App extends Component {
@@ -53,9 +51,6 @@ class App extends Component {
         this.setState({ isAdminLink: true })
         break
       case "/dashboard":
-        this.setState({ isAdminLink: true })
-        break
-      case "/dashboard/create/blog":
         this.setState({ isAdminLink: true })
         break
       default:
