@@ -7,7 +7,7 @@ class BlogCard extends Component {
     super()
     this.blog = blog
     this.history = history
-    this.urlPath = `/blog/${blog.blogTitle.trim().replace(" ", "-").toLowerCase()}`
+    this.urlPath = `/blog/${blog.blogTitle.trim().replaceAll(" ", "-").toLowerCase()}`
   }
 
   _handleMoreInfoClick = (event) => {
