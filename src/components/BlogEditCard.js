@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import Editor from "./Editor"
 import { Alert, Button } from "react-bootstrap"
+import Select from 'react-select'
 import axios from "axios"
 
 class BlogEditCard extends Component {
@@ -21,22 +22,30 @@ class BlogEditCard extends Component {
     newBlogState.newTitle = ""
     newBlogState.newPreview = ""
     newBlogState.newDesc = ""
+    // for editor
     newBlogState.onChangeTitle = (id, changedTitle) => {
       if (this.blog._id === id) {
         this.blog.newTitle = changedTitle
       }
     }
-
+    // for editor
     newBlogState.onChangePreview = (id, changedPreview) => {
       if (this.blog._id === id) {
         this.blog.newPreview = changedPreview
       }
     }
-
+    // for editor
     newBlogState.onChangeDesc = (id, changedDesc) => {
       if (this.blog._id === id) {
         this.blog.newDesc = changedDesc
       }
+    }
+    // dropdown menu
+    newBlogState.onChangePublished = (selectedOption) => {
+      this.setState({
+        published: selectedOption
+      })
+      console.log(this)
     }
     this.blog = newBlogState
     //others
@@ -46,6 +55,7 @@ class BlogEditCard extends Component {
     this.onChangeTitle = this.blog.onChangeTitle
     this.onChangePreview = this.blog.onChangePreview
     this.onChangeDesc = this.blog.onChangeDesc
+    this.onChangePublished = this.blog.onChangePublished
     this.id = id
     this.backendURI = backendURI
     // console.log(this)
@@ -53,8 +63,13 @@ class BlogEditCard extends Component {
     this._handleBlogClick = (event) => _handleBlogClick(event)
     //state
     this.state = {
+      published: {
+        value: blog.published ? true: false,
+        label: blog.published ? "Yes": "No"
+      },
       performedChanges: false,
       error: false,
+      updateMessage: ""
     }
   }
 
@@ -80,27 +95,46 @@ class BlogEditCard extends Component {
     } else {
       requestBody.blogDesc = this.blog.blogDesc
     }
+    //append the published variable (boolean) to the requestBody
+    requestBody.published = this.state.published.value
     //if performedChanges is true, then make the axios post call
     try {
       await axios.put(`${this.backendURI}/blogs/${this.blog._id}`, requestBody)
-      this.setState({ performedChanges: true })
+      this.setState({ 
+        performedChanges: true,
+        updateMessage: "This blog post has been updated... please refresh the page to view changes." 
+      })
     } catch (err) {
 
     }
   }
 
   _handleDelete = async (event) => {
+    this.setState({ performedChanges: false })
+    try {
+      await axios.delete(`${this.backendURI}/blogs/${this.blog._id}`)
+      this.setState({ 
+        performedChanges: true,
+        updateMessage: "This blog post has been deleted... please refresh the page to view changes." 
+      })
+    } catch (err) {
 
+    }
   }
 
   _handleCancel = (event) => this._handleBlogClick(event)
 
   render() {
+    const options = [
+      { value: true, label: "Yes" },
+      { value: false, label: "No" }
+    ]
+
     return (
       <div style={styles.sectionDiv}>
         {this.state.performedChanges
           ? <Alert variant="success">
-              This blog post has been updated... please refresh the page to view changes.
+              {this.state.updateMessage}
             </Alert>
           : null
         }
@@ -138,6 +172,17 @@ class BlogEditCard extends Component {
           <div style={styles.editBoxDiv}>
             {/* Blog Description Edit Box */}
             <Editor id={this.blog._id} currentContent={this.desc} onChangeState={this.onChangeDesc} />
+          </div>
+        </div>
+        {/* Blog Published Section */}
+        <div>
+          <div style={styles.headerDiv}>
+            {/* Published*/}
+            <h5>Published?</h5>
+          </div>
+          <div style={styles.editBoxDiv}>
+            {/* Blog Published Dropdown menu */}
+            <Select value={this.state.published} onChange={this.onChangePublished} options={options}/>
           </div>
         </div>
         <div style={styles.buttonsDiv}>

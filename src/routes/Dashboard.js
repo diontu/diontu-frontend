@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { withRouter } from "react-router-dom"
 import axios from "axios"
 import BlogEditCard from "./../components/BlogEditCard"
-import { Button, Alert } from "react-bootstrap"
+import { Button, Alert, Badge } from "react-bootstrap"
 
 import { GrFormAdd, GrFormSubtract } from "react-icons/gr"
 
@@ -14,6 +14,7 @@ class Dashboard extends Component {
       blogs: [],
       createdBlog: false, 
       redirectToLogin: "/login",
+      updateMessage: ""
     }
     axios.defaults.withCredentials = true
   }
@@ -64,7 +65,10 @@ class Dashboard extends Component {
         blogPreview: "New Blog Preview",
         blogDesc: "New Blog Description",
       })
-      this.setState({ createdBlog: true })
+      this.setState({ 
+        createdBlog: true,
+        updateMessage: "Created new blog... Refresh the page to see the changes!" 
+      })
     } catch (err) {
 
     }
@@ -93,7 +97,7 @@ class Dashboard extends Component {
         </div>
         {this.state.createdBlog
           ? <Alert variant="success">
-            Created new blog... Refresh the page to see the changes!
+            {this.state.updateMessage}
           </Alert>
           : null
         }
@@ -122,10 +126,22 @@ class Dashboard extends Component {
                   id={blog.index}
                   style={{
                     display: "inline-block",
-                    width: "97%",
+                    width: "80%",
                   }}
                 >
                   {blog.blogTitle}
+                </div>
+                <div
+                  id={blog.index}
+                  style={{
+                    display: "inline-block",
+                    width: "17%",
+                  }}
+                >
+                  {blog.published
+                    ? <Badge variant="success">Published</Badge>
+                    : <Badge variant="info">Not Published</Badge>
+                  }
                 </div>
                 <div
                   id={blog.index}
