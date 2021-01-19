@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import Editor from "./Editor"
 import { Alert, Button } from "react-bootstrap"
-import Select from 'react-select'
+import Select from "react-select"
 import axios from "axios"
 
 class BlogEditCard extends Component {
@@ -43,7 +43,7 @@ class BlogEditCard extends Component {
     // dropdown menu
     newBlogState.onChangePublished = (selectedOption) => {
       this.setState({
-        published: selectedOption
+        published: selectedOption,
       })
       console.log(this)
     }
@@ -64,12 +64,12 @@ class BlogEditCard extends Component {
     //state
     this.state = {
       published: {
-        value: blog.published ? true: false,
-        label: blog.published ? "Yes": "No"
+        value: blog.published ? true : false,
+        label: blog.published ? "Yes" : "No",
       },
       performedChanges: false,
       error: false,
-      updateMessage: ""
+      updateMessage: "",
     }
   }
 
@@ -100,26 +100,24 @@ class BlogEditCard extends Component {
     //if performedChanges is true, then make the axios post call
     try {
       await axios.put(`${this.backendURI}/blogs/${this.blog._id}`, requestBody)
-      this.setState({ 
+      this.setState({
         performedChanges: true,
-        updateMessage: "This blog post has been updated... please refresh the page to view changes." 
+        updateMessage:
+          "This blog post has been updated... please refresh the page to view changes.",
       })
-    } catch (err) {
-
-    }
+    } catch (err) {}
   }
 
   _handleDelete = async (event) => {
     this.setState({ performedChanges: false })
     try {
       await axios.delete(`${this.backendURI}/blogs/${this.blog._id}`)
-      this.setState({ 
+      this.setState({
         performedChanges: true,
-        updateMessage: "This blog post has been deleted... please refresh the page to view changes." 
+        updateMessage:
+          "This blog post has been deleted... please refresh the page to view changes.",
       })
-    } catch (err) {
-
-    }
+    } catch (err) {}
   }
 
   _handleCancel = (event) => this._handleBlogClick(event)
@@ -127,19 +125,18 @@ class BlogEditCard extends Component {
   render() {
     const options = [
       { value: true, label: "Yes" },
-      { value: false, label: "No" }
+      { value: false, label: "No" },
     ]
 
     return (
       <div style={styles.sectionDiv}>
-        {this.state.performedChanges
-          ? <Alert variant="success">
-              {this.state.updateMessage}
-            </Alert>
-          : null
-        }
+        {this.state.performedChanges ? (
+          <Alert variant="success">{this.state.updateMessage}</Alert>
+        ) : null}
         <div style={styles.buttonsDiv}>
-          <Button variant="danger" style={styles.buttonStyle}>Delete</Button>
+          <Button variant="danger" style={styles.buttonStyle}>
+            Delete
+          </Button>
         </div>
         {/* BlogTitle Section*/}
         <div>
@@ -149,7 +146,11 @@ class BlogEditCard extends Component {
           </div>
           <div style={styles.editBoxDiv}>
             {/* Blog Title Edit Box */}
-            <Editor id={this.blog._id} currentContent={this.title} onChangeState={this.onChangeTitle} />
+            <Editor
+              id={this.blog._id}
+              currentContent={this.title}
+              onChangeState={this.onChangeTitle}
+            />
           </div>
         </div>
         {/* Blog Preview Section */}
@@ -160,7 +161,11 @@ class BlogEditCard extends Component {
           </div>
           <div style={styles.editBoxDiv}>
             {/* Blog Preview Edit Box */}
-            <Editor id={this.blog._id} currentContent={this.preview} onChangeState={this.onChangePreview} />
+            <Editor
+              id={this.blog._id}
+              currentContent={this.preview}
+              onChangeState={this.onChangePreview}
+            />
           </div>
         </div>
         {/* BlogDescription Section */}
@@ -171,7 +176,11 @@ class BlogEditCard extends Component {
           </div>
           <div style={styles.editBoxDiv}>
             {/* Blog Description Edit Box */}
-            <Editor id={this.blog._id} currentContent={this.desc} onChangeState={this.onChangeDesc} />
+            <Editor
+              id={this.blog._id}
+              currentContent={this.desc}
+              onChangeState={this.onChangeDesc}
+            />
           </div>
         </div>
         {/* Blog Published Section */}
@@ -182,12 +191,23 @@ class BlogEditCard extends Component {
           </div>
           <div style={styles.editBoxDiv}>
             {/* Blog Published Dropdown menu */}
-            <Select value={this.state.published} onChange={this.onChangePublished} options={options}/>
+            <Select
+              value={this.state.published}
+              onChange={this.onChangePublished}
+              options={options}
+            />
           </div>
         </div>
         <div style={styles.buttonsDiv}>
-          <Button style={styles.buttonStyle} onClick={this._handleSave}>Save</Button>
-          <Button id={this.id} variant="secondary" style={styles.buttonStyle} onClick={this._handleCancel}>
+          <Button style={styles.buttonStyle} onClick={this._handleSave}>
+            Save
+          </Button>
+          <Button
+            id={this.id}
+            variant="secondary"
+            style={styles.buttonStyle}
+            onClick={this._handleCancel}
+          >
             Cancel
           </Button>
         </div>

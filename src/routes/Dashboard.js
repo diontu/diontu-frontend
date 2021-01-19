@@ -12,9 +12,9 @@ class Dashboard extends Component {
     this.state = {
       numberOfBlogs: 0,
       blogs: [],
-      createdBlog: false, 
+      createdBlog: false,
       redirectToLogin: "/login",
-      updateMessage: ""
+      updateMessage: "",
     }
     axios.defaults.withCredentials = true
   }
@@ -32,7 +32,7 @@ class Dashboard extends Component {
         this.setState({ numberOfBlogs: this.state.numberOfBlogs + 1 })
       }
       //Extra States for each blog:
-      // VAR - hidden 
+      // VAR - hidden
       let newBlogsState = this.state.blogs.map((blog) => {
         let newBlogState = Object.assign({}, blog)
         newBlogState.hidden = true
@@ -58,49 +58,47 @@ class Dashboard extends Component {
     })
   }
 
-  _handleCreateBlog = async (event) => { 
+  _handleCreateBlog = async (event) => {
     try {
       await axios.post(`${this.props.backendURI}/blogs`, {
         blogTitle: "New Blog Title",
         blogPreview: "New Blog Preview",
         blogDesc: "New Blog Description",
       })
-      this.setState({ 
+      this.setState({
         createdBlog: true,
-        updateMessage: "Created new blog... Refresh the page to see the changes!" 
+        updateMessage: "Created new blog... Refresh the page to see the changes!",
       })
-    } catch (err) {
-
-    }
+    } catch (err) {}
   }
 
   render() {
     return (
       <div style={{ textAlign: "left" }}>
         <div style={{ margin: "10px" }}>
-          <div style={{
-            display: "inline-block",
-            width: "50%",
-          }}>
+          <div
+            style={{
+              display: "inline-block",
+              width: "50%",
+            }}
+          >
             <h1>Blogs</h1>
           </div>
-          <div style={{
-            display: "inline-block",
-            width: "50%",
-            textAlign: "right"
-          }}>
-            <Button 
-              variant="success"
-              onClick={this._handleCreateBlog}
-            >New Blog</Button>
+          <div
+            style={{
+              display: "inline-block",
+              width: "50%",
+              textAlign: "right",
+            }}
+          >
+            <Button variant="success" onClick={this._handleCreateBlog}>
+              New Blog
+            </Button>
           </div>
         </div>
-        {this.state.createdBlog
-          ? <Alert variant="success">
-            {this.state.updateMessage}
-          </Alert>
-          : null
-        }
+        {this.state.createdBlog ? (
+          <Alert variant="success">{this.state.updateMessage}</Alert>
+        ) : null}
         <div>
           {this.state.blogs.map((blog) => (
             // make whole line a button that will make text area for the blog appear
@@ -138,10 +136,11 @@ class Dashboard extends Component {
                     width: "17%",
                   }}
                 >
-                  {blog.published
-                    ? <Badge variant="success">Published</Badge>
-                    : <Badge variant="info">Not Published</Badge>
-                  }
+                  {blog.published ? (
+                    <Badge variant="success">Published</Badge>
+                  ) : (
+                    <Badge variant="info">Not Published</Badge>
+                  )}
                 </div>
                 <div
                   id={blog.index}
@@ -154,7 +153,14 @@ class Dashboard extends Component {
                 </div>
               </a>
               {/* this is the blog editing place */}
-              {!blog.hidden ? <BlogEditCard backendURI={this.props.backendURI} id={blog.index} blog={blog} _handleBlogClick={this._handleBlogClick} /> : null}
+              {!blog.hidden ? (
+                <BlogEditCard
+                  backendURI={this.props.backendURI}
+                  id={blog.index}
+                  blog={blog}
+                  _handleBlogClick={this._handleBlogClick}
+                />
+              ) : null}
             </div>
           ))}
         </div>

@@ -1,6 +1,6 @@
 import React, { Component } from "react"
-import axios from 'axios'
-import Markdown from 'markdown-to-jsx'
+import axios from "axios"
+import Markdown from "markdown-to-jsx"
 
 // when the user reaches this page, it will look at the url and based off the url,
 // it will look at the database for the existing title and render its contents
@@ -13,20 +13,20 @@ class Blog extends Component {
       blog: {
         blogTitle: "",
         blogPreview: "",
-        blogDesc: ""
-      }
+        blogDesc: "",
+      },
     }
   }
 
   async componentDidMount() {
-    const response = await axios.get(`${this.props.backendURI}/blogs`);
+    const response = await axios.get(`${this.props.backendURI}/blogs`)
     const blogs = response.data
     for (let blog of blogs) {
       const processedURL = `/blog/${blog.blogTitle.trim().replaceAll(" ", "-").toLowerCase()}`
       if (processedURL === window.location.pathname) {
         this.setState({
-          blog: blog
-        }) 
+          blog: blog,
+        })
         break
       }
     }
