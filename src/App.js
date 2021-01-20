@@ -10,6 +10,7 @@ import BlogHome from "./routes/BlogHome"
 import Blog from "./routes/Blog"
 import Login from "./routes/Login"
 import Dashboard from "./routes/Dashboard"
+import Project from "./routes/Project"
 
 const links = [
   { path: "/", name: "Home", Component: Home, hidden: false },
@@ -17,6 +18,7 @@ const links = [
   { path: "/contact", name: "Contact", Component: Contact, hidden: false },
   { path: "/blog", name: "Blog", Component: BlogHome, hidden: false },
   { path: "/blog/:blogId", name: "Blog", Component: Blog, hidden: true },
+  { path: "/project/:projectId", name: "Blog", Component: Project, hidden: true }
 ]
 
 const adminLinks = [
@@ -53,6 +55,9 @@ class App extends Component {
       case "/dashboard":
         this.setState({ isAdminLink: true })
         break
+      case "/project":
+        this.setState({ isAdminLink: false })
+        break
       default:
         this.setState({ isAdminLink: false })
         break
@@ -65,7 +70,7 @@ class App extends Component {
   }
 
   render() {
-    const backendURI = "http://localhost:8000"
+    const backendURI = "http://localhost:8000" // make this an env variable.
 
     if (this.state.isAdminLink) {
       return (

@@ -7,8 +7,6 @@ import Markdown from "markdown-to-jsx"
 class Blog extends Component {
   constructor(props) {
     super(props)
-    console.log(this.state)
-    console.log(window.location.pathname)
     this.state = {
       blog: {
         blogTitle: "",
