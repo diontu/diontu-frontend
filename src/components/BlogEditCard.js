@@ -134,7 +134,7 @@ class BlogEditCard extends Component {
           <Alert variant="success">{this.state.updateMessage}</Alert>
         ) : null}
         <div style={styles.buttonsDiv}>
-          <Button variant="danger" style={styles.buttonStyle}>
+          <Button variant="danger" style={styles.buttonStyle} onClick={this._handleDelete}>
             Delete
           </Button>
         </div>
