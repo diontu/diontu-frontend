@@ -32,7 +32,9 @@ class Blog extends Component {
           sourced information is credited.
         </p>
         {this.state.blogs.map((blog) => (
-          <div key={blog._id}>{blog.published ? <BlogCard key={blog._id} blog={blog}></BlogCard> : null}</div>
+          <div key={blog._id}>
+            {blog.published ? <BlogCard key={blog._id} blog={blog}></BlogCard> : null}
+          </div>
         ))}
       </div>
     )

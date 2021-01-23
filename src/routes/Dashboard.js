@@ -96,7 +96,10 @@ class Dashboard extends Component {
             </Button>
           </div>
         </div>
-        <Alert variant="primary">To change the projects, make manual changes to MongoDB. Make sure each project name or blog name is unique.</Alert>
+        <Alert variant="primary">
+          To change the projects, make manual changes to MongoDB. Make sure each project name or
+          blog name is unique.
+        </Alert>
         {this.state.createdBlog ? (
           <Alert variant="success">{this.state.updateMessage}</Alert>
         ) : null}

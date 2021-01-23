@@ -21,7 +21,9 @@ class ProjectCard extends Component {
     return (
       <Container>
         <ProjectImg src={projectImgUrl} alt={`${projectName}_img`} />
-        <ProjectOverlay href={this.urlPath} onClick={this._handleProjectClick}>{projectName}</ProjectOverlay>
+        <ProjectOverlay href={this.urlPath} onClick={this._handleProjectClick}>
+          {projectName}
+        </ProjectOverlay>
       </Container>
     )
   }

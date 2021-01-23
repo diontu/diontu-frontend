@@ -31,11 +31,11 @@ class Home extends Component {
         <h3>Projects</h3>
         <div>
           {this.state.projects.map((project) => (
-            <div 
-              key={project._id} 
-              style={{ 
-                display: "inline-block", 
-                width: "33%", 
+            <div
+              key={project._id}
+              style={{
+                display: "inline-block",
+                width: "33%",
               }}
             >
               {project.published ? <ProjectCard project={project} /> : null}
