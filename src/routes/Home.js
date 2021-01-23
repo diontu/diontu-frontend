@@ -9,14 +9,14 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      projects: []
+      projects: [],
     }
   }
 
   async componentDidMount() {
     const projects = await axios.get(`${this.props.backendURI}/projects`)
     this.setState({
-      projects: projects.data
+      projects: projects.data,
     })
   }
 
@@ -31,10 +31,7 @@ class Home extends Component {
         <div style={{ textAlign: "center" }}>
           {this.state.projects.map((project) => (
             <div key={project._id}>
-              {project.published
-                ? <ProjectCard project={project} />
-                : null
-              }
+              {project.published ? <ProjectCard project={project} /> : null}
             </div>
           ))}
         </div>

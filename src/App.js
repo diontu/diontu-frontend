@@ -18,7 +18,7 @@ const links = [
   { path: "/contact", name: "Contact", Component: Contact, hidden: false },
   { path: "/blog", name: "Blog", Component: BlogHome, hidden: false },
   { path: "/blog/:blogId", name: "Blog", Component: Blog, hidden: true },
-  { path: "/project/:projectId", name: "Blog", Component: Project, hidden: true }
+  { path: "/project/:projectId", name: "Blog", Component: Project, hidden: true },
 ]
 
 const adminLinks = [
