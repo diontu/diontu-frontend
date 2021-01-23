@@ -3,12 +3,23 @@ import { withRouter } from "react-router-dom"
 
 import TechStack from "./../components/TechStack"
 import ProjectCard from "./../components/ProjectCard"
-
-const projects = [
-  { name: "project1", path: "/path", img: "" }
-]
+import axios from "axios"
 
 class Home extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      projects: []
+    }
+  }
+
+  async componentDidMount() {
+    const projects = await axios.get(`${this.props.backendURI}/projects`)
+    this.setState({
+      projects: projects.data
+    })
+  }
+
   render() {
     return (
       <div>
@@ -17,7 +28,16 @@ class Home extends Component {
           This is my personal website where I showcase my projects and write about technical topics
           in my blog that I find are interesting.
         </p>
-
+        <div style={{ textAlign: "center" }}>
+          {this.state.projects.map((project) => (
+            <div key={project._id}>
+              {project.published
+                ? <ProjectCard project={project} />
+                : null
+              }
+            </div>
+          ))}
+        </div>
         <TechStack />
       </div>
     )

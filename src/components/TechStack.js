@@ -74,7 +74,7 @@ class TechStack extends Component {
         <TechTitle>Tech Stack</TechTitle>
         <TechRow>
           {techFrontendBackendDB.map(({ name, reason, Component }) => (
-            <Tech>
+            <Tech key={name}>
               <TechPopup
                 content={reason}
                 key={name}
@@ -86,7 +86,7 @@ class TechStack extends Component {
         </TechRow>
         <TechRow>
           {techDevOps.map(({ name, reason, Component }) => (
-            <Tech>
+            <Tech key={name}>
               <TechPopup
                 content={reason}
                 key={name}
@@ -98,7 +98,7 @@ class TechStack extends Component {
         </TechRow>
         <TechRow>
           {techOthers.map(({ name, reason, Component }) => (
-            <Tech>
+            <Tech key={name}>
               <TechPopup
                 content={reason}
                 key={name}

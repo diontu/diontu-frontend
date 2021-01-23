@@ -5,6 +5,10 @@ class Project extends Component {
         super(props)
     }
 
+    async componentDidMount() {
+
+    }
+
     render() {
         return(
             <div>
