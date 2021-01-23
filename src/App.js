@@ -66,7 +66,6 @@ class App extends Component {
 
   _handleClick = (menuItem) => {
     this.setState({ active: menuItem })
-    console.log(menuItem)
   }
 
   render() {

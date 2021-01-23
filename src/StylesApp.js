@@ -10,6 +10,7 @@ export const Container = styled.div`
 export const NavBar = {
   Div: styled.div`
     padding: 10px;
+    margin-bottom: 30px;
     vertical-align: baseline;
     text-align: center;
   `,

@@ -28,9 +28,16 @@ class Home extends Component {
           This is my personal website where I showcase my projects and write about technical topics
           in my blog that I find are interesting.
         </p>
-        <div style={{ textAlign: "center" }}>
+        <h3>Projects</h3>
+        <div>
           {this.state.projects.map((project) => (
-            <div key={project._id}>
+            <div 
+              key={project._id} 
+              style={{ 
+                display: "inline-block", 
+                width: "33%", 
+              }}
+            >
               {project.published ? <ProjectCard project={project} /> : null}
             </div>
           ))}

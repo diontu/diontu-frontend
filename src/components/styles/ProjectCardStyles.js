@@ -2,8 +2,9 @@ import styled from "styled-components"
 
 export const ProjectImg = styled.img`
   display: block;
-  width: 100%;
-  height: auto;
+  width: 197px;
+  height: 197px;
+  border-radius: 10px;
 `
 
 export const ProjectOverlay = styled.a`
@@ -14,14 +15,14 @@ export const ProjectOverlay = styled.a`
   right: 0;
   height: 100%;
   width: 100%;
-  opacity: 0;
   transition: 0.5s ease;
   background: rgb(0, 0, 0);
   background: rgba(0, 0, 0, 0.6); /* Black see-through */
-  padding: 130px 0;
+  padding: 80px 0;
   color: white;
   font-size: 20px;
   text-align: center;
+  border-radius: 10px;
 
   &:hover {
     text-decoration: none;
@@ -31,10 +32,10 @@ export const ProjectOverlay = styled.a`
 
 export const Container = styled.div`
   position: relative;
-  max-height: 300px;
-  max-width: 300px;
-
-  &:hover ${ProjectOverlay} {
-    opacity: 1;
-  }
+  max-height: 200px;
+  max-width: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 45px;
+  margin-right: 45px;
 `

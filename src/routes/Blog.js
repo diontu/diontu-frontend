@@ -28,7 +28,6 @@ class Blog extends Component {
         break
       }
     }
-    console.log(typeof this.state.blog.blogDesc)
   }
 
   render() {
