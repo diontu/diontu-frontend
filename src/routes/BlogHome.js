@@ -19,9 +19,7 @@ class Blog extends Component {
       this.setState({
         blogs: blogs.data,
       })
-    } catch(err) {
-
-    }
+    } catch (err) {}
   }
 
   render() {
@@ -40,10 +38,7 @@ class Blog extends Component {
         </p>
         {this.state.blogs.map((blog) => (
           <div key={blog._id}>
-            {blog.published 
-              ? <BlogCard key={blog._id} blog={blog}></BlogCard> 
-              : null
-            }
+            {blog.published ? <BlogCard key={blog._id} blog={blog}></BlogCard> : null}
           </div>
         ))}
       </div>

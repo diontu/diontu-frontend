@@ -22,9 +22,7 @@ class Home extends Component {
       this.setState({
         projects: projects.data,
       })
-    } catch (err) {
-
-    }
+    } catch (err) {}
   }
 
   render() {
@@ -38,14 +36,8 @@ class Home extends Component {
         <h3>Projects</h3>
         <div>
           {this.state.projects.map((project) => (
-            <div
-              key={project._id}
-              style={styles.projectsDiv}
-            >
-              {project.published 
-                ? <ProjectCard project={project} /> 
-                : null
-              }
+            <div key={project._id} style={styles.projectsDiv}>
+              {project.published ? <ProjectCard project={project} /> : null}
             </div>
           ))}
         </div>
@@ -59,7 +51,7 @@ const styles = {
   projectsDiv: {
     display: "inline-block",
     width: "33%",
-  }
+  },
 }
 
 export default withRouter(Home)

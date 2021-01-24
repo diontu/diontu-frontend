@@ -32,14 +32,14 @@ class Blog extends Component {
           break
         }
       }
-    } catch(err) {
+    } catch (err) {
       // do nothing
     }
   }
 
   /**
    * Processes the blog title into a Url.
-   * @param {String} value 
+   * @param {String} value
    */
   processBlogUrl = (value) => {
     return `/blog/${value.trim().replaceAll(" ", "-").toLowerCase()}`

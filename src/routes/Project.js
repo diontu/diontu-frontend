@@ -29,14 +29,14 @@ class Project extends Component {
           break
         }
       }
-    } catch(err) {
+    } catch (err) {
       // do nothing
     }
   }
 
   /**
    * Processes the project name into a Url.
-   * @param {String} value 
+   * @param {String} value
    */
   processProjectUrl = (value) => {
     return `/project/${value.trim().replaceAll(" ", "-").toLowerCase()}`

@@ -29,7 +29,7 @@ class Login extends Component {
 
   /**
    * Handles onChange for username and password.
-   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event 
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
    */
   handleChange = (event) => {
     this.setState({
@@ -65,10 +65,7 @@ class Login extends Component {
         <div style={{ textAlign: "center" }}>
           <h1>Login</h1>
         </div>
-        {this.state.showError 
-          ? this.displayError() 
-          : null
-        }
+        {this.state.showError ? this.displayError() : null}
         <div>
           <input
             type="text"

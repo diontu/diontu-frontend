@@ -39,7 +39,7 @@ class Dashboard extends Component {
         return newBlogState
       })
       this.setState({ blogs: newBlogsState })
-    } catch(err) {
+    } catch (err) {
       // redirect user to login if not logged in
       this.props.history.push(this.state.redirectToLogin)
     }
@@ -47,7 +47,7 @@ class Dashboard extends Component {
 
   /**
    * Handles click to expand/minimize blog content.
-   * @param {React.MouseEvent<HTMLElement, MouseEvent>} event 
+   * @param {React.MouseEvent<HTMLElement, MouseEvent>} event
    */
   _handleBlogClick = (event) => {
     event.preventDefault()
@@ -62,7 +62,7 @@ class Dashboard extends Component {
 
   /**
    * Handles click to create new template blog.
-   * @param {React.MouseEvent<HTMLElement, MouseEvent>} event 
+   * @param {React.MouseEvent<HTMLElement, MouseEvent>} event
    */
   _handleCreateBlog = async (event) => {
     try {
@@ -97,55 +97,35 @@ class Dashboard extends Component {
           To change the projects, make manual changes to MongoDB. Make sure each project name or
           blog name is unique.
         </Alert>
-        {this.state.createdBlog 
-          ? <Alert variant="success">{this.state.updateMessage}</Alert>
-          : null
-        }
+        {this.state.createdBlog ? (
+          <Alert variant="success">{this.state.updateMessage}</Alert>
+        ) : null}
         <div>
           {this.state.blogs.map((blog) => (
-            <div
-              key={blog.blogTitle}
-              style={styles.divider}
-            >
-              <a
-                href="/"
-                onClick={this._handleBlogClick}
-                style={styles.link}
-              >
-                <div
-                  id={blog.index}
-                  style={styles.blogTitle}
-                >
+            <div key={blog.blogTitle} style={styles.divider}>
+              <a href="/" onClick={this._handleBlogClick} style={styles.link}>
+                <div id={blog.index} style={styles.blogTitle}>
                   {blog.blogTitle}
                 </div>
-                <div
-                  id={blog.index}
-                  style={styles.blogStatus}
-                >
-                  {blog.published
-                    ? <Badge variant="success">Published</Badge>
-                    : <Badge variant="info">Not Published</Badge>
-                  }
+                <div id={blog.index} style={styles.blogStatus}>
+                  {blog.published ? (
+                    <Badge variant="success">Published</Badge>
+                  ) : (
+                    <Badge variant="info">Not Published</Badge>
+                  )}
                 </div>
-                <div
-                  id={blog.index}
-                  style={styles.blogMinMaxIcon}
-                >
-                  {blog.hidden 
-                    ? <GrFormAdd id={blog.index} /> 
-                    : <GrFormSubtract id={blog.index} />
-                  }
+                <div id={blog.index} style={styles.blogMinMaxIcon}>
+                  {blog.hidden ? <GrFormAdd id={blog.index} /> : <GrFormSubtract id={blog.index} />}
                 </div>
               </a>
-              {!blog.hidden 
-                ? <BlogEditCard
-                    backendURI={this.props.backendURI}
-                    id={blog.index}
-                    blog={blog}
-                    _handleBlogClick={this._handleBlogClick}
-                  />
-                : null
-              }
+              {!blog.hidden ? (
+                <BlogEditCard
+                  backendURI={this.props.backendURI}
+                  id={blog.index}
+                  blog={blog}
+                  _handleBlogClick={this._handleBlogClick}
+                />
+              ) : null}
             </div>
           ))}
         </div>
@@ -162,7 +142,7 @@ const styles = {
   halfDivAlignRight: {
     display: "inline-block",
     width: "50%",
-    textAlign: "right"
+    textAlign: "right",
   },
   divider: {
     borderTop: "solid",
@@ -186,7 +166,7 @@ const styles = {
   blogMinMaxIcon: {
     display: "inline-block",
     width: "3%",
-  }
+  },
 }
 
 export default withRouter(Dashboard)
