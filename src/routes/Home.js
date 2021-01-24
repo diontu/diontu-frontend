@@ -5,6 +5,9 @@ import TechStack from "./../components/TechStack"
 import ProjectCard from "./../components/ProjectCard"
 import axios from "axios"
 
+/**
+ * Home Page.
+ */
 class Home extends Component {
   constructor(props) {
     super(props)
@@ -14,10 +17,14 @@ class Home extends Component {
   }
 
   async componentDidMount() {
-    const projects = await axios.get(`${this.props.backendURI}/projects`)
-    this.setState({
-      projects: projects.data,
-    })
+    try {
+      const projects = await axios.get(`${this.props.backendURI}/projects`)
+      this.setState({
+        projects: projects.data,
+      })
+    } catch (err) {
+
+    }
   }
 
   render() {
@@ -33,18 +40,25 @@ class Home extends Component {
           {this.state.projects.map((project) => (
             <div
               key={project._id}
-              style={{
-                display: "inline-block",
-                width: "33%",
-              }}
+              style={styles.projectsDiv}
             >
-              {project.published ? <ProjectCard project={project} /> : null}
+              {project.published 
+                ? <ProjectCard project={project} /> 
+                : null
+              }
             </div>
           ))}
         </div>
         <TechStack />
       </div>
     )
+  }
+}
+
+const styles = {
+  projectsDiv: {
+    display: "inline-block",
+    width: "33%",
   }
 }
 

@@ -1,24 +1,21 @@
 import React from "react"
 import { Editor, EditorState, ContentState } from "draft-js"
 
+/**
+ * A rich text-editor.
+ */
 class TheEditor extends React.Component {
-  // requires a method to change the state of the variable
-  // REQUIRED VARIABLES:
-  // currentState - a string that contains the content
-  // REQUIRED METHODS:
-  // onChangeState(changedState) - method that changes the state of the content
   constructor({ id, currentContent, onChangeState }) {
     super()
     // initiate state
     this.state = {
       editorState: EditorState.createWithContent(ContentState.createFromText(`${currentContent}`)),
     }
-    // ensure newTitle, newPreview, and newDesc has currentContent
+    // ensure new content is updated with the current content
     onChangeState(id, currentContent)
 
     this.onChange = (editorState) => {
       onChangeState(id, editorState.getCurrentContent().getPlainText())
-      // console.log(editorState.getCurrentContent().getPlainText())
       this.setState({ editorState })
     }
   }
@@ -33,8 +30,6 @@ class TheEditor extends React.Component {
     )
   }
 }
-
-let size = {}
 
 const styles = {
   editor: {

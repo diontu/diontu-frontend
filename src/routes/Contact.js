@@ -1,5 +1,8 @@
 import React, { Component } from "react"
 
+/**
+ * Contact Home Page.
+ */
 class Contact extends Component {
   render() {
     return (

@@ -1,6 +1,9 @@
 import React, { Component } from "react"
 import TechStack from "./../components/TechStack"
 
+/**
+ * About Home Page.
+ */
 class About extends Component {
   render() {
     return (

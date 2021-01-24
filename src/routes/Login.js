@@ -3,6 +3,9 @@ import { withRouter } from "react-router-dom"
 import axios from "axios"
 import { Alert } from "react-bootstrap"
 
+/**
+ * Login Page. Used for authentication.
+ */
 class Login extends Component {
   constructor(props) {
     super(props)
@@ -24,15 +27,20 @@ class Login extends Component {
     }
   }
 
+  /**
+   * Handles onChange for username and password.
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event 
+   */
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value,
     })
   }
 
-  //return response based on successful call or not (unsuccessful = status codes 400)
+  /**
+   * Handles click to log into the Dashboard Page. Return response based on successful call or not (unsuccessful = status codes 400).
+   */
   submitForm = async () => {
-    //make the axios post call with the data in json format
     try {
       this.setState({ showError: false })
       const res = await axios.post(`${this.props.backendURI}/login/authenticate`, {
@@ -46,6 +54,9 @@ class Login extends Component {
     }
   }
 
+  /**
+   * Displays incorrect username or password error.
+   */
   displayError = () => <Alert variant="danger">Incorrect username or password!</Alert>
 
   render() {
@@ -54,7 +65,10 @@ class Login extends Component {
         <div style={{ textAlign: "center" }}>
           <h1>Login</h1>
         </div>
-        {this.state.showError ? this.displayError() : null}
+        {this.state.showError 
+          ? this.displayError() 
+          : null
+        }
         <div>
           <input
             type="text"

@@ -1,6 +1,9 @@
 import React, { Component } from "react"
 import axios from "axios"
 
+/**
+ * Project Page.
+ */
 class Project extends Component {
   constructor(props) {
     super(props)
@@ -14,20 +17,29 @@ class Project extends Component {
   }
 
   async componentDidMount() {
-    const response = await axios.get(`${this.props.backendURI}/projects`)
-    const projects = response.data
-    for (let project of projects) {
-      const processedURL = `/project/${project.projectName
-        .trim()
-        .replaceAll(" ", "-")
-        .toLowerCase()}`
-      if (processedURL === window.location.pathname) {
-        this.setState({
-          project: project,
-        })
-        break
+    try {
+      const response = await axios.get(`${this.props.backendURI}/projects`)
+      const projects = response.data
+      for (let project of projects) {
+        const processedURL = this.processProjectUrl(project.projectName)
+        if (processedURL === window.location.pathname) {
+          this.setState({
+            project: project,
+          })
+          break
+        }
       }
+    } catch(err) {
+      // do nothing
     }
+  }
+
+  /**
+   * Processes the project name into a Url.
+   * @param {String} value 
+   */
+  processProjectUrl = (value) => {
+    return `/project/${value.trim().replaceAll(" ", "-").toLowerCase()}`
   }
 
   render() {

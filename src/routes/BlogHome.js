@@ -2,6 +2,9 @@ import React, { Component } from "react"
 import BlogCard from "../components/BlogCard"
 import axios from "axios"
 
+/**
+ * Blog Home Page.
+ */
 class Blog extends Component {
   constructor(props) {
     super(props)
@@ -11,10 +14,14 @@ class Blog extends Component {
   }
 
   async componentDidMount() {
-    const blogs = await axios.get(`${this.props.backendURI}/blogs`)
-    this.setState({
-      blogs: blogs.data,
-    })
+    try {
+      const blogs = await axios.get(`${this.props.backendURI}/blogs`)
+      this.setState({
+        blogs: blogs.data,
+      })
+    } catch(err) {
+
+    }
   }
 
   render() {
@@ -33,7 +40,10 @@ class Blog extends Component {
         </p>
         {this.state.blogs.map((blog) => (
           <div key={blog._id}>
-            {blog.published ? <BlogCard key={blog._id} blog={blog}></BlogCard> : null}
+            {blog.published 
+              ? <BlogCard key={blog._id} blog={blog}></BlogCard> 
+              : null
+            }
           </div>
         ))}
       </div>
