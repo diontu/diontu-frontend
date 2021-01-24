@@ -21,12 +21,12 @@ const socialDetails = [
 class Socials extends Component {
   render() {
     return (
-      <span style={{ margin: "10px", display: "inline-block" }}>
+      <span style={styles.socialsSpan}>
         {socialDetails.map((social) => (
-          <span key={social.name} style={{ margin: "8px", display: "inline-block" }}>
+          <span key={social.name} style={styles.socialsSpan}>
             <a
               href={social.link}
-              style={{ display: "inline-block" }}
+              style={styles.socialLink}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -34,14 +34,22 @@ class Socials extends Component {
                 size={social.size}
                 stroke="#A8A8A8"
                 strokeWidth="1.5px"
-                // onMouseEnter={({target}) => target.style.stroke="black" }
-                // onMouseOut={({target}) => target.style.stroke="#A8A8A8" }
               />
             </a>
           </span>
         ))}
       </span>
     )
+  }
+}
+
+const styles = {
+  socialsSpan: { 
+    margin: "10px", 
+    display: "inline-block" 
+  },
+  socialLink: { 
+    display: "inline-block" 
   }
 }
 

@@ -4,51 +4,45 @@ import { Alert, Button } from "react-bootstrap"
 import Select from "react-select"
 import axios from "axios"
 
+/**
+ * Blog Edit Card.
+ */
 class BlogEditCard extends Component {
-  // requires 3 methods to change the state of the variables that was used to render this
-  // REQUIRED OBJECT:
-  // blog - object which contains the following methods and variables
-  // REQUIRED VARIABLES:
-  // title, preview, desc
-  // REQUIRED METHODS from object:
-  // onChangeTitle(changedTitle)
-  // onChangePreview(changedPreview)
-  // onChangeDesc(changedDesc)
   constructor({ backendURI, id, blog, _handleBlogClick }) {
     super()
-    //blog
+    // blog
     this.blog = blog
+    // add "newTitle", "newPreview", "newDesc" to class var
     let newBlogState = Object.assign({}, this.blog)
     newBlogState.newTitle = ""
     newBlogState.newPreview = ""
     newBlogState.newDesc = ""
-    // for editor
+    // onChange Blog Title class var for editor
     newBlogState.onChangeTitle = (id, changedTitle) => {
       if (this.blog._id === id) {
         this.blog.newTitle = changedTitle
       }
     }
-    // for editor
+    // onChange Blog Preview class var for editor
     newBlogState.onChangePreview = (id, changedPreview) => {
       if (this.blog._id === id) {
         this.blog.newPreview = changedPreview
       }
     }
-    // for editor
+    // onChange Blog Description class var for editor
     newBlogState.onChangeDesc = (id, changedDesc) => {
       if (this.blog._id === id) {
         this.blog.newDesc = changedDesc
       }
     }
-    // dropdown menu
+    // onChange Blog Published class var dropdown menu
     newBlogState.onChangePublished = (selectedOption) => {
       this.setState({
         published: selectedOption,
       })
-      console.log(this)
     }
+    // other class var
     this.blog = newBlogState
-    //others
     this.title = blog.blogTitle
     this.preview = blog.blogPreview
     this.desc = blog.blogDesc
@@ -58,10 +52,8 @@ class BlogEditCard extends Component {
     this.onChangePublished = this.blog.onChangePublished
     this.id = id
     this.backendURI = backendURI
-    // console.log(this)
-    //method
     this._handleBlogClick = (event) => _handleBlogClick(event)
-    //state
+    // state
     this.state = {
       published: {
         value: blog.published ? true : false,
@@ -73,31 +65,34 @@ class BlogEditCard extends Component {
     }
   }
 
+  /**
+   * Handle click to save changes to the DB.
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event 
+   */
   _handleSave = async (event) => {
     this.setState({ performedChanges: false })
-
-    //if title is different, then make changes to db
+    // if title is different, then make changes to DB
     let requestBody = {}
     if (this.title !== this.blog.newTitle) {
       requestBody.blogTitle = this.blog.newTitle
     } else {
       requestBody.blogTitle = this.blog.blogTitle
     }
-    //if preview is different, then make changes to db
+    // if preview is different, then make changes to DB
     if (this.preview !== this.blog.newPreview) {
       requestBody.blogPreview = this.blog.newPreview
     } else {
       requestBody.blogPreview = this.blog.blogPreview
     }
-    //if description is different, then make changes to db
+    // if description is different, then make changes to DB
     if (this.desc !== this.blog.newDesc) {
       requestBody.blogDesc = this.blog.newDesc
     } else {
       requestBody.blogDesc = this.blog.blogDesc
     }
-    //append the published variable (boolean) to the requestBody
+    // append the published variable (boolean) to the requestBody
     requestBody.published = this.state.published.value
-    //if performedChanges is true, then make the axios post call
+    // if performedChanges is true, then make the axios post call
     try {
       await axios.put(`${this.backendURI}/blogs/${this.blog._id}`, requestBody)
       this.setState({
@@ -105,9 +100,15 @@ class BlogEditCard extends Component {
         updateMessage:
           "This blog post has been updated... please refresh the page to view changes.",
       })
-    } catch (err) {}
+    } catch (err) {
+      // do nothing
+    }
   }
 
+  /**
+   * Handles click to delete blog.
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event 
+   */
   _handleDelete = async (event) => {
     this.setState({ performedChanges: false })
     try {
@@ -117,9 +118,15 @@ class BlogEditCard extends Component {
         updateMessage:
           "This blog post has been deleted... please refresh the page to view changes.",
       })
-    } catch (err) {}
+    } catch (err) {
+      // do nothing
+    }
   }
 
+  /**
+   * Handles click to expand/minimize blog content.
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event 
+   */
   _handleCancel = (event) => this._handleBlogClick(event)
 
   render() {

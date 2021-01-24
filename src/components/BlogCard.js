@@ -18,16 +18,7 @@ class BlogCard extends Component {
 
   render() {
     return (
-      <Card
-        style={{
-          width: "auto",
-          textAlign: "left",
-          borderLeft: "none",
-          borderRight: "none",
-          borderBottom: "none",
-          borderRadius: "0px",
-        }}
-      >
+      <Card style={styles.card}>
         <Card.Body>
           <Card.Title>{this.blog.blogTitle}</Card.Title>
           <Card.Text>{this.blog.blogPreview}</Card.Text>
@@ -37,6 +28,17 @@ class BlogCard extends Component {
         </Card.Body>
       </Card>
     )
+  }
+}
+
+const styles = {
+  card: {
+    width: "auto",
+    textAlign: "left",
+    borderLeft: "none",
+    borderRight: "none",
+    borderBottom: "none",
+    borderRadius: "0px",
   }
 }
 
