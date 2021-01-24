@@ -1,13 +1,14 @@
 import React, { Component } from "react"
 import { withRouter } from "react-router-dom"
 import { ProjectImg, ProjectOverlay, Container } from "./styles/ProjectCardStyles"
+import processProjectUrl from "./../utils/processUrl"
 
 class ProjectCard extends Component {
   constructor({ project, history }) {
     super()
     this.project = project
     this.history = history
-    this.urlPath = `/project/${project.projectName.trim().replaceAll(" ", "-").toLowerCase()}`
+    this.urlPath = processProjectUrl("/project", project.projectName)
   }
 
   _handleProjectClick = (event) => {

@@ -1,13 +1,14 @@
 import React, { Component } from "react"
 import { withRouter } from "react-router-dom"
 import { Card } from "react-bootstrap"
+import processBlogUrl from "./../utils/processUrl"
 
 class BlogCard extends Component {
   constructor({ blog, history }) {
     super()
     this.blog = blog
     this.history = history
-    this.urlPath = `/blog/${blog.blogTitle.trim().replaceAll(" ", "-").toLowerCase()}`
+    this.urlPath = processBlogUrl("/blog", blog.blogTitle)
   }
 
   _handleMoreInfoClick = (event) => {
