@@ -69,7 +69,7 @@ class App extends Component {
   }
 
   render() {
-    const backendURI = "http://localhost:8000" // make this an env variable.
+    const backendURI = "https://api-dion-website.herokuapp.com/" // make this an env variable.
 
     if (this.state.isAdminLink) {
       return (
