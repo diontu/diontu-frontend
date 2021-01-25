@@ -7,6 +7,10 @@ export const Container = styled.div`
   width: 800;
 `
 
+export const WebHeader = styled.h1`
+  text-decoration: none;
+`
+
 export const NavBar = {
   Div: styled.div`
     padding: 10px;

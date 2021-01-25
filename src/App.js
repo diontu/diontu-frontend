@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import Socials from "./components/Socials"
 import { NavLink, Route, Switch } from "react-router-dom"
-import { Container, NavBar, CustomCSSTransition, NonAnimationTransition } from "./StylesApp"
+import { Container, NavBar, CustomCSSTransition, NonAnimationTransition, WebHeader } from "./StylesApp"
 
 import Home from "./routes/Home"
 import About from "./routes/About"
@@ -89,9 +89,12 @@ class App extends Component {
       )
     } else {
       return (
-        <div style={{ textAlign: "center", margin: "auto", width: "900px" }}>
-          <Socials />
+        <div style={{ textAlign: "center", margin: "auto", width: "900px", marginTop: "50px", marginBottom: "60px" }}>
           <NavBar.Div>
+            <WebHeader>
+              <a href="/" style={{ textDecoration: "none", color: "black" }}>Dion Tu</a>
+            </WebHeader>
+            <Socials />
             <NavBar.Links>
               {links
                 ? links.map((link) =>
