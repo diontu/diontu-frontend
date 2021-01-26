@@ -24,11 +24,7 @@ class Dashboard extends Component {
 
   async componentDidMount() {
     try {
-      await axios.get(`${this.props.backendURI}/dashboard`, {
-        headers: {
-          withCredentials: true
-        }
-      })
+      await axios.get(`${this.props.backendURI}/dashboard`, {withCredentials: true} )
       const blogs = await axios.get(`${this.props.backendURI}/blogs`)
       this.setState({ blogs: blogs.data })
       // added "numberOfBlogs" as state

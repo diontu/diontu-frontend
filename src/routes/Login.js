@@ -20,11 +20,7 @@ class Login extends Component {
 
   async componentDidMount() {
     try {
-      await axios.get(`${this.props.backendURI}/dashboard`, {
-        headers: {
-          withCredentials: true
-        }
-      })
+      await axios.get(`${this.props.backendURI}/dashboard`, {withCredentials: true})
       this.props.history.push(this.state.redirectToDashboard)
     } catch (err) {
       //do nothing
