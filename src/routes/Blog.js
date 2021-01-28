@@ -44,11 +44,19 @@ class Blog extends Component {
     return (
       <div>
         <h1>{this.state.blog.blogTitle}</h1>
-        <div>Created: {dateParser(this.state.blog.dateCreated)}</div>
-        <div>Last Updated: {dateParser(this.state.blog.dateUpdated)}</div>
+        <div style={styles.datesDiv}>
+          <div>Created: {dateParser(this.state.blog.dateCreated)}</div>
+          <div>Last Updated: {dateParser(this.state.blog.dateUpdated)}</div>
+        </div>
         <Markdown>{this.state.blog.blogDesc}</Markdown>
       </div>
     )
+  }
+}
+
+const styles = {
+  datesDiv: {
+    marginBottom: "20px"
   }
 }
 
