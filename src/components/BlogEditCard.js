@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import Editor from "./Editor"
 import { Alert, Button } from "react-bootstrap"
 import Select from "react-select"
+import { dateParser } from "./../utils/common"
 import axios from "axios"
 
 /**
@@ -46,6 +47,8 @@ class BlogEditCard extends Component {
     this.title = blog.blogTitle
     this.preview = blog.blogPreview
     this.desc = blog.blogDesc
+    this.dateCreated = blog.dateCreated
+    this.dateUpdated = blog.dateUpdated
     this.onChangeTitle = this.blog.onChangeTitle
     this.onChangePreview = this.blog.onChangePreview
     this.onChangeDesc = this.blog.onChangeDesc
@@ -59,6 +62,8 @@ class BlogEditCard extends Component {
         value: blog.published ? true : false,
         label: blog.published ? "Yes" : "No",
       },
+      dateCreated: dateParser(this.dateCreated),
+      dateUpdated: dateParser(this.dateUpdated),
       performedChanges: false,
       error: false,
       updateMessage: "",
@@ -146,10 +151,10 @@ class BlogEditCard extends Component {
           </Button>
         </div>
         <div>
-          Created: {this.blog.dateCreated}
+          Created: {this.state.dateCreated}
         </div>
         <div>
-          Last Updated: {this.blog.dateUpdated}
+          Last Updated: {this.state.dateUpdated}
         </div>
         {/* BlogTitle Section*/}
         <div>

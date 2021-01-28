@@ -43,7 +43,7 @@ class Login extends Component {
   submitForm = async () => {
     try {
       this.setState({ showError: false })
-      const res = await axios.post(`${this.props.backendURI}/login/authenticate`, {
+      await axios.post(`${this.props.backendURI}/login/authenticate`, {
         username: this.state.username,
         password: this.state.password,
       })

@@ -8,9 +8,13 @@ export const processUrl = (contextPath, value) => {
 }
 
 /**
- * Returns the date in the format "Jan 12 2003".
- * @param {Date} date 
+ * Returns the date in the format "2003-03-21".
+ * @param {String} dateString
  */
-export const dateParser = (date) => {
-    return date.toDateString().split(' ').slice(1).join(' ')
+export const dateParser = (dateString) => {
+    const date = new Date(dateString)
+    let year = date.getFullYear()
+    let month = date.getMonth() + 1
+    let day = date.getDate()
+    return year + "-" + month + "-" + day
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import axios from "axios"
 import Markdown from "markdown-to-jsx"
-import { processUrl } from "../utils/common"
+import { processUrl, dateParser } from "../utils/common"
 
 /**
  * Blog page.
@@ -44,8 +44,8 @@ class Blog extends Component {
     return (
       <div>
         <h1>{this.state.blog.blogTitle}</h1>
-        <div>{this.state.blog.dateCreated}</div>
-        <div>{this.state.blog.dateUpdated}</div>
+        <div>Created: {dateParser(this.state.blog.dateCreated)}</div>
+        <div>Last Updated: {dateParser(this.state.blog.dateUpdated)}</div>
         <Markdown>{this.state.blog.blogDesc}</Markdown>
       </div>
     )
