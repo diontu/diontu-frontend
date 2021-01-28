@@ -16,6 +16,8 @@ class Blog extends Component {
         blogTitle: "",
         blogPreview: "",
         blogDesc: "",
+        dateCreated: "",
+        dateUpdated: ""
       },
     }
   }
@@ -42,6 +44,8 @@ class Blog extends Component {
     return (
       <div>
         <h1>{this.state.blog.blogTitle}</h1>
+        <div>{this.state.blog.dateCreated}</div>
+        <div>{this.state.blog.dateUpdated}</div>
         <Markdown>{this.state.blog.blogDesc}</Markdown>
       </div>
     )
