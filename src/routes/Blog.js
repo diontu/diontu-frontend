@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import axios from "axios"
 import Markdown from "markdown-to-jsx"
-import processBlogUrl from "./../utils/processUrl"
+import { processUrl } from "../utils/common"
 
 /**
  * Blog page.
@@ -25,7 +25,7 @@ class Blog extends Component {
       const response = await axios.get(`${this.props.backendURI}/blogs`)
       const blogs = response.data
       for (let blog of blogs) {
-        const processedURL = processBlogUrl("/blog", blog.blogTitle)
+        const processedURL = processUrl("/blog", blog.blogTitle)
         if (processedURL === window.location.pathname) {
           this.setState({
             blog: blog,

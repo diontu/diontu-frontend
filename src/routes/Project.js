@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import axios from "axios"
-import processProjectUrl from "./../utils/processUrl"
+import { processUrl } from "../utils/common"
 
 /**
  * Project Page.
@@ -22,7 +22,7 @@ class Project extends Component {
       const response = await axios.get(`${this.props.backendURI}/projects`)
       const projects = response.data
       for (let project of projects) {
-        const processedURL = processProjectUrl("/project", project.projectName)
+        const processedURL = processUrl("/project", project.projectName)
         if (processedURL === window.location.pathname) {
           this.setState({
             project: project,

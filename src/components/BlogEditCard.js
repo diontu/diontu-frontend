@@ -145,6 +145,12 @@ class BlogEditCard extends Component {
             Delete
           </Button>
         </div>
+        <div>
+          Created: {this.blog.dateCreated}
+        </div>
+        <div>
+          Last Updated: {this.blog.dateUpdated}
+        </div>
         {/* BlogTitle Section*/}
         <div>
           <div style={styles.headerDiv}>
