@@ -4,11 +4,14 @@ import "./index.css"
 import App from "./App"
 import reportWebVitals from "./reportWebVitals"
 import { BrowserRouter as Router } from "react-router-dom"
+import HttpsRedirect from 'react-https-redirect';
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <HttpsRedirect>
+    <Router>
+      <App />
+    </Router>
+  </HttpsRedirect>,
   document.getElementById("root")
 )
 
