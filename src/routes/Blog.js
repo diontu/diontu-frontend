@@ -17,7 +17,7 @@ class Blog extends Component {
         blogPreview: "",
         blogDesc: "",
         dateCreated: "",
-        dateUpdated: ""
+        dateUpdated: "",
       },
     }
   }
@@ -56,8 +56,8 @@ class Blog extends Component {
 
 const styles = {
   datesDiv: {
-    marginBottom: "20px"
-  }
+    marginBottom: "20px",
+  },
 }
 
 export default Blog

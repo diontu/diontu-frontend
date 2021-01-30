@@ -30,11 +30,7 @@ class Socials extends Component {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <social.Component
-                size={social.size}
-                stroke="#A8A8A8"
-                strokeWidth="1.5px"
-              />
+              <social.Component size={social.size} stroke="#A8A8A8" strokeWidth="1.5px" />
             </a>
           </span>
         ))}
@@ -44,13 +40,13 @@ class Socials extends Component {
 }
 
 const styles = {
-  socialsSpan: { 
-    margin: "10px", 
-    display: "inline-block" 
+  socialsSpan: {
+    margin: "10px",
+    display: "inline-block",
   },
-  socialLink: { 
-    display: "inline-block" 
-  }
+  socialLink: {
+    display: "inline-block",
+  },
 }
 
 export default Socials

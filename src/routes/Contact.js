@@ -43,8 +43,8 @@ class Contact extends Component {
 
 const styles = {
   pageDiv: {
-    marginBottom: "80px"
-  }
+    marginBottom: "80px",
+  },
 }
 
 export default Contact

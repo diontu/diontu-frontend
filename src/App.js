@@ -1,7 +1,13 @@
 import React, { Component } from "react"
 import Socials from "./components/Socials"
 import { NavLink, Route, Switch } from "react-router-dom"
-import { Container, NavBar, CustomCSSTransition, NonAnimationTransition, WebHeader } from "./StylesApp"
+import {
+  Container,
+  NavBar,
+  CustomCSSTransition,
+  NonAnimationTransition,
+  WebHeader,
+} from "./StylesApp"
 
 import Home from "./routes/Home"
 import About from "./routes/About"
@@ -10,7 +16,7 @@ import BlogHome from "./routes/BlogHome"
 import Blog from "./routes/Blog"
 import Login from "./routes/Login"
 import Dashboard from "./routes/Dashboard"
-import ProjectHome from "./routes/ProjectHome";
+import ProjectHome from "./routes/ProjectHome"
 import Project from "./routes/Project"
 
 const links = [
@@ -71,7 +77,7 @@ class App extends Component {
   }
 
   render() {
-    const backendURI = "https://api-dion-website.herokuapp.com" 
+    const backendURI = "https://api-dion-website.herokuapp.com"
 
     if (this.state.isAdminLink) {
       return (
@@ -91,10 +97,20 @@ class App extends Component {
       )
     } else {
       return (
-        <div style={{ textAlign: "center", margin: "auto", width: "900px", marginTop: "50px", marginBottom: "60px" }}>
+        <div
+          style={{
+            textAlign: "center",
+            margin: "auto",
+            width: "900px",
+            marginTop: "50px",
+            marginBottom: "60px",
+          }}
+        >
           <NavBar.Div>
             <WebHeader>
-              <a href="/" style={{ textDecoration: "none", color: "black" }}>Dion Tu</a>
+              <a href="/" style={{ textDecoration: "none", color: "black" }}>
+                Dion Tu
+              </a>
             </WebHeader>
             <Socials />
             <NavBar.Links>

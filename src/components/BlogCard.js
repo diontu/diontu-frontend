@@ -39,7 +39,7 @@ const styles = {
     borderRight: "none",
     borderBottom: "none",
     borderRadius: "0px",
-  }
+  },
 }
 
 export default withRouter(BlogCard)

@@ -72,7 +72,7 @@ class BlogEditCard extends Component {
 
   /**
    * Handle click to save changes to the DB.
-   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event 
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
    */
   _handleSave = async (event) => {
     this.setState({ performedChanges: false })
@@ -112,7 +112,7 @@ class BlogEditCard extends Component {
 
   /**
    * Handles click to delete blog.
-   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event 
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
    */
   _handleDelete = async (event) => {
     this.setState({ performedChanges: false })
@@ -130,7 +130,7 @@ class BlogEditCard extends Component {
 
   /**
    * Handles click to expand/minimize blog content.
-   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event 
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
    */
   _handleCancel = (event) => this._handleBlogClick(event)
 
@@ -150,12 +150,8 @@ class BlogEditCard extends Component {
             Delete
           </Button>
         </div>
-        <div>
-          Created: {this.state.dateCreated}
-        </div>
-        <div>
-          Last Updated: {this.state.dateUpdated}
-        </div>
+        <div>Created: {this.state.dateCreated}</div>
+        <div>Last Updated: {this.state.dateUpdated}</div>
         {/* BlogTitle Section*/}
         <div>
           <div style={styles.headerDiv}>
