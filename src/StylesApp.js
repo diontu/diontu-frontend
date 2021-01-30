@@ -49,7 +49,7 @@ export const NavBar = {
 }
 
 export const NonAnimationTransition = styled.div`
-  position: absolute;
+  position: relative;
   text-align: left;
   width: auto;
   top: relative;
