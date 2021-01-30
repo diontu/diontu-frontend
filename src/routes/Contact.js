@@ -6,7 +6,7 @@ import React, { Component } from "react"
 class Contact extends Component {
   render() {
     return (
-      <div>
+      <div style={styles.pageDiv}>
         <h1>Contact</h1>
         <p>Thanks for wanting to get in touch with me! </p>
         <p>
@@ -38,6 +38,12 @@ class Contact extends Component {
         </p>
       </div>
     )
+  }
+}
+
+const styles = {
+  pageDiv: {
+    marginBottom: "80px"
   }
 }
 

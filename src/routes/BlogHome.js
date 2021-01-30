@@ -24,7 +24,7 @@ class Blog extends Component {
 
   render() {
     return (
-      <div>
+      <div style={styles.pageDiv}>
         <h1>Blog</h1>
         <p>Welcome to my blog!</p>
         <p>
@@ -43,6 +43,12 @@ class Blog extends Component {
         ))}
       </div>
     )
+  }
+}
+
+const styles = {
+  pageDiv: {
+    marginBottom: "80px"
   }
 }
 

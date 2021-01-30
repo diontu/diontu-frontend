@@ -24,7 +24,7 @@ import {
 } from "react-icons/si"
 
 const techFrontendBackendDB = [
-  { name: "React", reason: "I use this often to create odd-looking UI.", Component: SiReact },
+  { name: "React", reason: "This helps me build cool UI.", Component: SiReact },
   {
     name: "Node.js",
     reason: "I use this often to create HTTP/RESTful APIs and other cool things.",
@@ -58,7 +58,7 @@ const techDevOps = [
   { name: "Heroku", reason: "I use this to host my website.", Component: SiHeroku },
 ]
 const techOthers = [
-  { name: "VSCode", reason: "My choice of text editor.", Component: SiVisualstudiocode },
+  // { name: "VSCode", reason: "My choice of text editor.", Component: SiVisualstudiocode },
   {
     name: "Confluence",
     reason: "What I use to document the things I learn.",

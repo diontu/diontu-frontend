@@ -10,15 +10,17 @@ import BlogHome from "./routes/BlogHome"
 import Blog from "./routes/Blog"
 import Login from "./routes/Login"
 import Dashboard from "./routes/Dashboard"
+import ProjectHome from "./routes/ProjectHome";
 import Project from "./routes/Project"
 
 const links = [
   { path: "/", name: "Home", Component: Home, hidden: false },
-  { path: "/about", name: "About", Component: About, hidden: false },
+  { path: "/about", name: "About", Component: About, hidden: true },
+  { path: "/project", name: "Projects", Component: ProjectHome, hidden: false },
+  { path: "/project/:projectId", name: "Blog", Component: Project, hidden: true },
   { path: "/contact", name: "Contact", Component: Contact, hidden: false },
   { path: "/blog", name: "Blog", Component: BlogHome, hidden: false },
   { path: "/blog/:blogId", name: "Blog", Component: Blog, hidden: true },
-  { path: "/project/:projectId", name: "Blog", Component: Project, hidden: true },
 ]
 
 const adminLinks = [
@@ -69,7 +71,7 @@ class App extends Component {
   }
 
   render() {
-    const backendURI = "https://api-dion-website.herokuapp.com" // make this an env variable.
+    const backendURI = "https://api-dion-website.herokuapp.com" 
 
     if (this.state.isAdminLink) {
       return (
