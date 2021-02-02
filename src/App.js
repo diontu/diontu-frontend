@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import Socials from "./components/Socials"
-import { NavLink, Route, Switch } from "react-router-dom"
+import { Route, Switch } from "react-router-dom"
 import {
   Container,
   NavBar,
@@ -103,16 +103,16 @@ class App extends Component {
             margin: "auto",
             width: "900px",
             marginTop: "50px",
-            marginBottom: "60px",
+            marginBottom: "50px",
           }}
         >
           <NavBar.Div>
             <WebHeader>
-              <a href="/" style={{ textDecoration: "none", color: "black" }}>
+              <a href="/" style={{ textDecoration: "none", color: "black"}}>
                 Dion Tu
               </a>
             </WebHeader>
-            <Socials />
+            
             <NavBar.Links>
               {links
                 ? links.map((link) =>
@@ -120,7 +120,7 @@ class App extends Component {
                       <NavBar.LinkItem
                         key={link.path}
                         href={link.path}
-                        style={this.state.active === link.path ? { color: "black" } : {}}
+                        style={this.state.active === link.path ? { color: "black", fontWeight: "bold" } : {}}
                         onClick={this._handleClick.bind(this, link.path)}
                       >
                         {link.name}
@@ -145,6 +145,9 @@ class App extends Component {
                 : null}
             </Switch>
           </Container>
+          <footer>
+            <Socials />
+          </footer>
         </div>
       )
     }

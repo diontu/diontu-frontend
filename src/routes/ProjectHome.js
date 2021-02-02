@@ -21,7 +21,7 @@ class ProjectHome extends Component {
 
   render() {
     return (
-      <div style={styles.pageDiv}>
+      <div>
         <h1>Projects</h1>
         <div>
           {this.state.projects.map((project) => (
@@ -39,10 +39,7 @@ const styles = {
   projectsDiv: {
     display: "inline-block",
     width: "33%",
-  },
-  pageDiv: {
-    marginBottom: "80px",
-  },
+  }
 }
 
 export default ProjectHome

@@ -18,7 +18,6 @@ import {
   SiDocker,
   SiAmazonaws,
   SiHeroku,
-  SiVisualstudiocode,
   SiConfluence,
   SiFigma,
 } from "react-icons/si"
@@ -58,7 +57,6 @@ const techDevOps = [
   { name: "Heroku", reason: "I use this to host my website.", Component: SiHeroku },
 ]
 const techOthers = [
-  // { name: "VSCode", reason: "My choice of text editor.", Component: SiVisualstudiocode },
   {
     name: "Confluence",
     reason: "What I use to document the things I learn.",
@@ -71,8 +69,9 @@ class TechStack extends Component {
   render() {
     return (
       <TechContainer>
-        <TechTitle>Tech Stack</TechTitle>
+        {/* <TechTitle>Tech Stack</TechTitle> */}
         <TechRow>
+          <span styles={styles.techText}>{`Frontend & Backend: `}</span>
           {techFrontendBackendDB.map(({ name, reason, Component }) => (
             <Tech key={name}>
               <TechPopup
@@ -85,6 +84,7 @@ class TechStack extends Component {
           ))}
         </TechRow>
         <TechRow>
+          <span>{`DevOps: `}</span>
           {techDevOps.map(({ name, reason, Component }) => (
             <Tech key={name}>
               <TechPopup
@@ -97,6 +97,7 @@ class TechStack extends Component {
           ))}
         </TechRow>
         <TechRow>
+          <span>{`Others: `}</span>
           {techOthers.map(({ name, reason, Component }) => (
             <Tech key={name}>
               <TechPopup
@@ -110,6 +111,12 @@ class TechStack extends Component {
         </TechRow>
       </TechContainer>
     )
+  }
+}
+
+const styles = {
+  techText: {
+    fontSize: "40px"
   }
 }
 

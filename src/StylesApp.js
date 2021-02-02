@@ -4,6 +4,8 @@ import { CSSTransition } from "react-transition-group"
 export const Container = styled.div`
   position: relative;
   text-align: left;
+  padding-bottom: 25px;
+  min-height: 300px;
   width: 800;
 `
 
@@ -29,7 +31,7 @@ export const NavBar = {
     position: relative;
     text-align: center;
     margin-top: 25px;
-    margin-bottom: 25px;
+    margin-bottom: 15px;
   `,
   LinkItem: styled.a`
     text-decoration: none;

@@ -4,7 +4,8 @@ import { Popup } from "semantic-ui-react"
 export const TechContainer = styled.div`
   background-color: #efefef;
   border-radius: 10px;
-  padding: 10px;
+  padding: 20px;
+  margin: 35px 0px;
 `
 
 export const TechTitle = styled.div`
@@ -15,8 +16,10 @@ export const TechTitle = styled.div`
 `
 
 export const TechRow = styled.div`
-  text-align: center;
-  padding: 6px;
+  text-align: left;
+  padding: 9px;
+  padding-left: 30px;
+  padding-right: 30px;
 `
 
 export const Tech = styled.span`

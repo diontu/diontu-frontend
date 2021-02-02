@@ -24,7 +24,7 @@ class Home extends Component {
 
   render() {
     return (
-      <div style={styles.pageDiv}>
+      <div>
         <h1>Hi! I'm Dion Tu.</h1>
         <p>
           This is my personal website where I showcase my projects and write blogs about technical
@@ -53,9 +53,6 @@ const styles = {
   projectsDiv: {
     display: "inline-block",
     width: "33%",
-  },
-  pageDiv: {
-    marginBottom: "80px",
   },
 }
 
