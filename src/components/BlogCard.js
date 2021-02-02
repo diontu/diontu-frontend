@@ -11,10 +11,10 @@ class BlogCard extends Component {
     this.urlPath = processUrl("/blog", blog.blogTitle)
   }
 
-  _handleMoreInfoClick = (event) => {
-    event.preventDefault()
-    this.history.push(this.urlPath)
-  }
+  // _handleMoreInfoClick = (event) => {
+  //   event.preventDefault()
+  //   this.history.push(this.urlPath)
+  // }
 
   render() {
     return (
@@ -22,7 +22,7 @@ class BlogCard extends Component {
         <Card.Body>
           <Card.Title>{this.blog.blogTitle}</Card.Title>
           <Card.Text>{this.blog.blogPreview}</Card.Text>
-          <Card.Link href={this.urlPath} onClick={this._handleMoreInfoClick}>
+          <Card.Link href={this.urlPath}>
             More...
           </Card.Link>
         </Card.Body>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 
 export const Container = styled.div`
   position: relative;
+  text-align: left;
   width: 800;
 `
 
@@ -31,7 +32,7 @@ export const NavBar = {
     margin-top: 25px;
     margin-bottom: 25px;
   `,
-  LinkItem: styled(Link)`
+  LinkItem: styled.a`
     text-decoration: none;
     text-align: center;
     font-family: "" Open Sans "";

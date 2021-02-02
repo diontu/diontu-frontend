@@ -4,8 +4,6 @@ import { NavLink, Route, Switch } from "react-router-dom"
 import {
   Container,
   NavBar,
-  CustomCSSTransition,
-  NonAnimationTransition,
   WebHeader,
 } from "./StylesApp"
 
@@ -18,6 +16,7 @@ import Login from "./routes/Login"
 import Dashboard from "./routes/Dashboard"
 import ProjectHome from "./routes/ProjectHome"
 import Project from "./routes/Project"
+import ErrorPage from "./routes/ErrorPage"
 
 const links = [
   { path: "/", name: "Home", Component: Home, hidden: false },
@@ -27,6 +26,7 @@ const links = [
   { path: "/contact", name: "Contact", Component: Contact, hidden: false },
   { path: "/blog", name: "Blog", Component: BlogHome, hidden: false },
   { path: "/blog/:blogId", name: "Blog", Component: Blog, hidden: true },
+  { path: "/*", name: "Error", Component: ErrorPage, hidden: true}
 ]
 
 const adminLinks = [
@@ -119,8 +119,7 @@ class App extends Component {
                     !link.hidden ? (
                       <NavBar.LinkItem
                         key={link.path}
-                        to={link.path}
-                        as={NavLink}
+                        href={link.path}
                         style={this.state.active === link.path ? { color: "black" } : {}}
                         onClick={this._handleClick.bind(this, link.path)}
                       >
@@ -132,24 +131,19 @@ class App extends Component {
             </NavBar.Links>
           </NavBar.Div>
           <Container>
-            {links
-              ? links.map(({ path, Component, hidden }) => (
-                  <Route key={path} path={path} exact>
-                    {({ match }) => (
-                      <CustomCSSTransition
-                        in={match != null}
-                        timeout={{ enter: 400, exit: 100 }}
-                        classNames="page"
-                        unmountOnExit
-                      >
+            <Switch>
+              {links
+                ? links.map(({ path, Component, hidden }) => (
+                    <Route key={path} path={path} exact>
+                      {({ match }) => (
                         <div>
                           <Component backendURI={backendURI} />
                         </div>
-                      </CustomCSSTransition>
-                    )}
-                  </Route>
-                ))
-              : null}
+                      )}
+                    </Route>
+                  ))
+                : null}
+            </Switch>
           </Container>
         </div>
       )
