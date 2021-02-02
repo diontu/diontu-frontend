@@ -1,6 +1,6 @@
 import React, { Component } from "react"
-import ProjectCard from "../components/ProjectCard"
 import axios from "axios"
+import { processUrl } from "./../utils/common"
 
 class ProjectHome extends Component {
   constructor(props) {
@@ -25,8 +25,8 @@ class ProjectHome extends Component {
         <h1>Projects</h1>
         <div>
           {this.state.projects.map((project) => (
-            <div key={project._id} style={styles.projectsDiv}>
-              {project.published ? <ProjectCard project={project} /> : null}
+            <div>
+              <a href={processUrl("/project", project.projectName)}>{project.projectName}</a>
             </div>
           ))}
         </div>
