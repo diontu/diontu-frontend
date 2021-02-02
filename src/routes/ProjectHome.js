@@ -25,7 +25,7 @@ class ProjectHome extends Component {
         <h1>Projects</h1>
         <div>
           {this.state.projects.map((project) => (
-            <div>
+            <div key={project._id}>
               <a href={processUrl("/project", project.projectName)}>{project.projectName}</a>
             </div>
           ))}

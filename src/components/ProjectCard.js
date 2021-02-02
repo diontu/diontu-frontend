@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { withRouter } from "react-router-dom"
 import { ProjectImg, ProjectOverlay, Container } from "./styles/ProjectCardStyles"
 import { processUrl } from "../utils/common"
 
@@ -30,4 +29,4 @@ class ProjectCard extends Component {
   }
 }
 
-export default withRouter(ProjectCard)
+export default ProjectCard

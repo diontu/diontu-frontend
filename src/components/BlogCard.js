@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { withRouter } from "react-router-dom"
 import { Card } from "react-bootstrap"
 import { processUrl } from "../utils/common"
 
@@ -42,4 +41,4 @@ const styles = {
   },
 }
 
-export default withRouter(BlogCard)
+export default BlogCard

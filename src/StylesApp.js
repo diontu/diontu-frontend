@@ -1,6 +1,5 @@
 import styled from "styled-components"
 import { CSSTransition } from "react-transition-group"
-import { Link } from "react-router-dom"
 
 export const Container = styled.div`
   position: relative;

@@ -1,5 +1,4 @@
 import React, { Component } from "react"
-import { withRouter } from "react-router-dom"
 import axios from "axios"
 import BlogEditCard from "./../components/BlogEditCard"
 import { Button, Alert, Badge } from "react-bootstrap"
@@ -169,4 +168,4 @@ const styles = {
   },
 }
 
-export default withRouter(Dashboard)
+export default Dashboard

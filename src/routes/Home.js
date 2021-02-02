@@ -1,8 +1,5 @@
 import React, { Component } from "react"
-import { withRouter } from "react-router-dom"
-
 import TechStack from "./../components/TechStack"
-import ProjectCard from "./../components/ProjectCard"
 import axios from "axios"
 
 /**
@@ -62,4 +59,4 @@ const styles = {
   },
 }
 
-export default withRouter(Home)
+export default Home
