@@ -4,7 +4,7 @@ import { CSSTransition } from "react-transition-group"
 export const Container = styled.div`
   position: relative;
   text-align: left;
-  padding-bottom: 25px;
+  padding-bottom: 35px;
   min-height: 300px;
   width: 800;
 `
