@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { withRouter } from "react-router-dom"
 import axios from "axios"
 import BlogEditCard from "./../components/BlogEditCard"
+import ProjectEditCard from "./../components/ProjectEditCard"
 import { Button, Alert, Badge } from "react-bootstrap"
 
 import { GrFormAdd, GrFormSubtract } from "react-icons/gr"
@@ -17,6 +18,7 @@ class Dashboard extends Component {
       blogs: [],
       projects: [],
       createdBlog: false,
+      createdProject: false,
       redirectToLogin: "/login",
       updateMessage: "",
     }
@@ -106,6 +108,26 @@ class Dashboard extends Component {
         blogDesc: "New Blog Description",
       })
       this.setState({
+        createdProject: true,
+        updateMessage: "Created new Project... Refresh the page to see the changes!",
+      })
+    } catch (err) {
+      // do nothing
+    }
+  }
+
+  //TODO: create handle project create button
+  /**
+   * Handles click to create new template blog.
+   * @param {React.MouseEvent<HTMLElement, MouseEvent>} event
+   */
+  _handleCreateProject = async (event) => {
+    try {
+      await axios.post(`${this.props.backendURI}/projects`, {
+        projectName: "New Project Name",
+        projectDesc: "New Project Description",
+      })
+      this.setState({
         createdBlog: true,
         updateMessage: "Created new blog... Refresh the page to see the changes!",
       })
@@ -117,6 +139,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div style={{ textAlign: "left" }}>
+        {/* blogs */}
         <div style={{ margin: "10px" }}>
           <div style={styles.halfDiv}>
             <h1>Blogs</h1>
@@ -138,17 +161,17 @@ class Dashboard extends Component {
           {this.state.blogs.map((blog) => (
             <div key={blog.blogTitle} style={styles.divider}>
               <a href="/" onClick={this._handleBlogClick} style={styles.link}>
-                <div id={blog.index} style={styles.blogTitle}>
+                <div id={blog.index} style={styles.itemTitle}>
                   {blog.blogTitle}
                 </div>
-                <div id={blog.index} style={styles.blogStatus}>
+                <div id={blog.index} style={styles.itemStatus}>
                   {blog.published ? (
                     <Badge variant="success">Published</Badge>
                   ) : (
                     <Badge variant="info">Not Published</Badge>
                   )}
                 </div>
-                <div id={blog.index} style={styles.blogMinMaxIcon}>
+                <div id={blog.index} style={styles.itemMinMaxIcon}>
                   {blog.hidden ? <GrFormAdd id={blog.index} /> : <GrFormSubtract id={blog.index} />}
                 </div>
               </a>
@@ -158,6 +181,49 @@ class Dashboard extends Component {
                   id={blog.index}
                   blog={blog}
                   _handleBlogClick={this._handleBlogClick}
+                />
+              ) : null}
+            </div>
+          ))}
+        </div>
+        {/* projects */}
+        <div style={{ margin: "10px" }}>
+          <div style={styles.halfDiv}>
+            <h1>Blogs</h1>
+          </div>
+          <div style={styles.halfDivAlignRight}>
+            <Button variant="success" onClick={this._handleCreateBlog}>
+              New Blog
+            </Button>
+          </div>
+        </div>
+        {this.state.createdProject ? (
+          <Alert variant="success">{this.state.updateMessage}</Alert>
+        ) : null}
+        <div>
+          {this.state.projects.map((project) => (
+            <div key={project.projectName} style={styles.divider}>
+              <a href="/" onClick={this._handleProjectClick} style={styles.link}>
+                <div id={project.index} style={styles.itemTitle}>
+                  {project.projectName}
+                </div>
+                <div id={project.index} style={styles.itemStatus}>
+                  {project.published ? (
+                    <Badge variant="success">Published</Badge>
+                  ) : (
+                    <Badge variant="info">Not Published</Badge>
+                  )}
+                </div>
+                <div id={project.index} style={styles.itemMinMaxIcon}>
+                  {project.hidden ? <GrFormAdd id={project.index} /> : <GrFormSubtract id={project.index} />}
+                </div>
+              </a>
+              {!project.hidden ? (
+                <ProjectEditCard
+                  backendURI={this.props.backendURI}
+                  id={project.index}
+                  project={project}
+                  _handleProjectClick={this._handleProjectClick}
                 />
               ) : null}
             </div>
@@ -189,15 +255,15 @@ const styles = {
     display: "inline-block",
     width: "100%",
   },
-  blogTitle: {
+  itemTitle: {
     display: "inline-block",
     width: "80%",
   },
-  blogStatus: {
+  itemStatus: {
     display: "inline-block",
     width: "17%",
   },
-  blogMinMaxIcon: {
+  itemMinMaxIcon: {
     display: "inline-block",
     width: "3%",
   },
