@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import { withRouter } from "react-router-dom"
 import axios from "axios"
 import BlogEditCard from "./../components/BlogEditCard"
 import { Button, Alert, Badge } from "react-bootstrap"
@@ -12,8 +13,9 @@ class Dashboard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      numberOfBlogs: 0,
+      numberOfItems: 0,
       blogs: [],
+      projects: [],
       createdBlog: false,
       redirectToLogin: "/login",
       updateMessage: "",
@@ -24,12 +26,14 @@ class Dashboard extends Component {
   async componentDidMount() {
     try {
       await axios.get(`${this.props.backendURI}/dashboard`)
+
+      // blogs
       const blogs = await axios.get(`${this.props.backendURI}/blogs`)
       this.setState({ blogs: blogs.data })
-      // added "numberOfBlogs" as state
+      // added "numberOfItems" as state
       for (var blog of this.state.blogs) {
-        blog.index = this.state.numberOfBlogs
-        this.setState({ numberOfBlogs: this.state.numberOfBlogs + 1 })
+        blog.index = this.state.numberOfItems
+        this.setState({ numberOfItems: this.state.numberOfItems + 1 })
       }
       // added "hidden" state
       let newBlogsState = this.state.blogs.map((blog) => {
@@ -38,6 +42,22 @@ class Dashboard extends Component {
         return newBlogState
       })
       this.setState({ blogs: newBlogsState })
+
+      // projects
+      const projects = await axios.get(`${this.props.backendURI}/projects`)
+      this.setState({ projects: projects.data })
+      // added "numberOfItems" as state
+      for (var project of this.state.projects) {
+        project.index = this.state.numberOfItems
+        this.setState({ numberOfItems: this.state.numberOfItems + 1 })
+      }
+      // added "hidden" state
+      let newProjectsState = this.state.blogs.map((project) => {
+        let newProjectState = Object.assign({}, project)
+        newProjectState.hidden = true
+        return newProjectState
+      })
+      this.setState({ projects: newProjectsState })
     } catch (err) {
       // redirect user to login if not logged in
       this.props.history.push(this.state.redirectToLogin)
@@ -56,6 +76,21 @@ class Dashboard extends Component {
         newBlogsState[event.target.id].hidden = !newBlogsState[event.target.id].hidden
       }
       return { blogs: newBlogsState }
+    })
+  }
+
+  /**
+   * Handles click to expand/minimize project content.
+   * @param {React.MouseEvent<HTMLElement, MouseEvent>} event
+   */
+  _handleProjectClick = (event) => {
+    event.preventDefault()
+    this.setState((prevState, props) => {
+      let newProjectsState = prevState.blogs
+      if (event.target.id !== "") {
+        newProjectsState[event.target.id].hidden = !newProjectsState[event.target.id].hidden
+      }
+      return { Projects: newProjectsState }
     })
   }
 
@@ -168,4 +203,4 @@ const styles = {
   },
 }
 
-export default Dashboard
+export default withRouter(Dashboard)
