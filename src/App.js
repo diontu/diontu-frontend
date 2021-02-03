@@ -1,11 +1,7 @@
 import React, { Component } from "react"
 import Socials from "./components/Socials"
 import { Route, Switch } from "react-router-dom"
-import {
-  Container,
-  NavBar,
-  WebHeader,
-} from "./StylesApp"
+import { Container, NavBar, WebHeader } from "./StylesApp"
 
 import Home from "./routes/Home"
 import About from "./routes/About"
@@ -26,7 +22,7 @@ const links = [
   { path: "/contact", name: "Contact", Component: Contact, hidden: false },
   { path: "/blog", name: "Blog", Component: BlogHome, hidden: false },
   { path: "/blog/:blogId", name: "Blog", Component: Blog, hidden: true },
-  { path: "/*", name: "Error", Component: ErrorPage, hidden: true}
+  { path: "/*", name: "Error", Component: ErrorPage, hidden: true },
 ]
 
 const adminLinks = [
@@ -108,11 +104,11 @@ class App extends Component {
         >
           <NavBar.Div>
             <WebHeader>
-              <a href="/" style={{ textDecoration: "none", color: "black"}}>
+              <a href="/" style={{ textDecoration: "none", color: "black" }}>
                 Dion Tu
               </a>
             </WebHeader>
-            
+
             <NavBar.Links>
               {links
                 ? links.map((link) =>
@@ -120,7 +116,11 @@ class App extends Component {
                       <NavBar.LinkItem
                         key={link.path}
                         href={link.path}
-                        style={this.state.active === link.path ? { color: "black", fontWeight: "bold" } : {}}
+                        style={
+                          this.state.active === link.path
+                            ? { color: "black", fontWeight: "bold" }
+                            : {}
+                        }
                         onClick={this._handleClick.bind(this, link.path)}
                       >
                         {link.name}

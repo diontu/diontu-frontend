@@ -21,9 +21,7 @@ class BlogCard extends Component {
         <Card.Body>
           <Card.Title>{this.blog.blogTitle}</Card.Title>
           <Card.Text>{this.blog.blogPreview}</Card.Text>
-          <Card.Link href={this.urlPath}>
-            More...
-          </Card.Link>
+          <Card.Link href={this.urlPath}>More...</Card.Link>
         </Card.Body>
       </Card>
     )

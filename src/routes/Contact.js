@@ -15,21 +15,20 @@ class Contact extends Component {
         </p>
         <p>
           <strong>Email: </strong>diontu1@gmail.com
-          <br /> 
-          I check my emails frequently so if you have questions about my background, business
+          <br />I check my emails frequently so if you have questions about my background, business
           inquiries or other concerns, send me an email.
         </p>
         <p>
           <strong>LinkedIn: </strong>
           <a href="https://www.linkedin.com/in/diontu/">diontu</a>
-          <br /> 
+          <br />
           For more details on my background, check out my LinkedIn. You could also contact me here
           for any business inquiries.
         </p>
         <p>
           <strong>Twitter: </strong>
           <a href="https://twitter.com/DionTu2">@DionTu2</a>
-          <br /> 
+          <br />
           For concerns related to the website or suggestions on blog ideas, send me a message on
           Twitter.
         </p>

@@ -39,7 +39,7 @@ const styles = {
   projectsDiv: {
     display: "inline-block",
     width: "33%",
-  }
+  },
 }
 
 export default ProjectHome

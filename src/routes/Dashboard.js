@@ -215,7 +215,11 @@ class Dashboard extends Component {
                   )}
                 </div>
                 <div id={project.index} style={styles.itemMinMaxIcon}>
-                  {project.hidden ? <GrFormAdd id={project.index} /> : <GrFormSubtract id={project.index} />}
+                  {project.hidden ? (
+                    <GrFormAdd id={project.index} />
+                  ) : (
+                    <GrFormSubtract id={project.index} />
+                  )}
                 </div>
               </a>
               {!project.hidden ? (

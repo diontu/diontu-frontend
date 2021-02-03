@@ -116,8 +116,8 @@ class TechStack extends Component {
 
 const styles = {
   techText: {
-    fontSize: "40px"
-  }
+    fontSize: "40px",
+  },
 }
 
 export default TechStack
