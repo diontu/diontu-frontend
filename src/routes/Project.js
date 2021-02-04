@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import axios from "axios"
+import Markdown from "markdown-to-jsx"
 import { processUrl } from "../utils/common"
 
 /**
@@ -12,7 +13,6 @@ class Project extends Component {
       project: {
         projectName: "",
         projectDesc: "",
-        projectImgUrl: "",
       },
     }
   }
@@ -39,7 +39,7 @@ class Project extends Component {
     return (
       <div>
         <h1>{this.state.project.projectName}</h1>
-        <p>{this.state.project.projectDesc}</p>
+        <Markdown>{this.state.project.projectDesc}</Markdown>
       </div>
     )
   }

@@ -26,20 +26,13 @@ class ProjectHome extends Component {
         <div>
           {this.state.projects.map((project) => (
             <div key={project._id}>
-              <a href={processUrl("/project", project.projectName)}>{project.projectName}</a>
+              {project.published ? <a href={processUrl("/project", project.projectName)}>{project.projectName}</a> : null}
             </div>
           ))}
         </div>
       </div>
     )
   }
-}
-
-const styles = {
-  projectsDiv: {
-    display: "inline-block",
-    width: "33%",
-  },
 }
 
 export default ProjectHome

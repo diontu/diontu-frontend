@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import {
   Tech,
   TechContainer,
-  TechTitle,
   TechRow,
   TechPopup,
   TechPopupHeader,

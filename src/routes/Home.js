@@ -49,11 +49,4 @@ class Home extends Component {
   }
 }
 
-const styles = {
-  projectsDiv: {
-    display: "inline-block",
-    width: "33%",
-  },
-}
-
 export default Home

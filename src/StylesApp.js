@@ -5,7 +5,7 @@ export const Container = styled.div`
   position: relative;
   text-align: left;
   padding-bottom: 35px;
-  min-height: 300px;
+  min-height: 450px;
   width: 800;
 `
 
