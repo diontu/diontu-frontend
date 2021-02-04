@@ -53,8 +53,8 @@ class Dashboard extends Component {
         project.index = this.state.numberOfItems
         this.setState({ numberOfItems: this.state.numberOfItems + 1 })
       }
-      // added "hidden" state
-      let newProjectsState = this.state.blogs.map((project) => {
+      // added "hidden" state for minimize/maximize
+      let newProjectsState = this.state.projects.map((project) => {
         let newProjectState = Object.assign({}, project)
         newProjectState.hidden = true
         return newProjectState
@@ -88,9 +88,9 @@ class Dashboard extends Component {
   _handleProjectClick = (event) => {
     event.preventDefault()
     this.setState((prevState, props) => {
-      let newProjectsState = prevState.blogs
+      let newProjectsState = prevState.projects
       if (event.target.id !== "") {
-        newProjectsState[event.target.id].hidden = !newProjectsState[event.target.id].hidden
+        newProjectsState[event.target.id - this.state.blogs.length].hidden = !newProjectsState[event.target.id - this.state.blogs.length].hidden
       }
       return { Projects: newProjectsState }
     })
@@ -129,7 +129,7 @@ class Dashboard extends Component {
       })
       this.setState({
         createdBlog: true,
-        updateMessage: "Created new blog... Refresh the page to see the changes!",
+        updateMessage: "Created new project... Refresh the page to see the changes!",
       })
     } catch (err) {
       // do nothing
@@ -140,98 +140,102 @@ class Dashboard extends Component {
     return (
       <div style={{ textAlign: "left" }}>
         {/* blogs */}
-        <div style={{ margin: "10px" }}>
-          <div style={styles.halfDiv}>
-            <h1>Blogs</h1>
-          </div>
-          <div style={styles.halfDivAlignRight}>
-            <Button variant="success" onClick={this._handleCreateBlog}>
-              New Blog
-            </Button>
-          </div>
-        </div>
-        <Alert variant="primary">
-          To change the projects, make manual changes to MongoDB. Make sure each project name or
-          blog name is unique.
-        </Alert>
-        {this.state.createdBlog ? (
-          <Alert variant="success">{this.state.updateMessage}</Alert>
-        ) : null}
-        <div>
-          {this.state.blogs.map((blog) => (
-            <div key={blog.blogTitle} style={styles.divider}>
-              <a href="/" onClick={this._handleBlogClick} style={styles.link}>
-                <div id={blog.index} style={styles.itemTitle}>
-                  {blog.blogTitle}
-                </div>
-                <div id={blog.index} style={styles.itemStatus}>
-                  {blog.published ? (
-                    <Badge variant="success">Published</Badge>
-                  ) : (
-                    <Badge variant="info">Not Published</Badge>
-                  )}
-                </div>
-                <div id={blog.index} style={styles.itemMinMaxIcon}>
-                  {blog.hidden ? <GrFormAdd id={blog.index} /> : <GrFormSubtract id={blog.index} />}
-                </div>
-              </a>
-              {!blog.hidden ? (
-                <BlogEditCard
-                  backendURI={this.props.backendURI}
-                  id={blog.index}
-                  blog={blog}
-                  _handleBlogClick={this._handleBlogClick}
-                />
-              ) : null}
+        <div style={styles.sections}>
+          <div style={{ margin: "10px" }}>
+            <div style={styles.halfDiv}>
+              <h1>Blogs</h1>
             </div>
-          ))}
+            <div style={styles.halfDivAlignRight}>
+              <Button variant="success" onClick={this._handleCreateBlog}>
+                New Blog
+              </Button>
+            </div>
+          </div>
+          <Alert variant="primary">
+            To change the projects, make manual changes to MongoDB. Make sure each project name or
+            blog name is unique.
+          </Alert>
+          {this.state.createdBlog ? (
+            <Alert variant="success">{this.state.updateMessage}</Alert>
+          ) : null}
+          <div>
+            {this.state.blogs.map((blog) => (
+              <div key={blog.blogTitle} style={styles.divider}>
+                <a href="/" onClick={this._handleBlogClick} style={styles.link}>
+                  <div id={blog.index} style={styles.itemTitle}>
+                    {blog.blogTitle}
+                  </div>
+                  <div id={blog.index} style={styles.itemStatus}>
+                    {blog.published ? (
+                      <Badge variant="success">Published</Badge>
+                    ) : (
+                      <Badge variant="info">Not Published</Badge>
+                    )}
+                  </div>
+                  <div id={blog.index} style={styles.itemMinMaxIcon}>
+                    {blog.hidden ? <GrFormAdd id={blog.index} /> : <GrFormSubtract id={blog.index} />}
+                  </div>
+                </a>
+                {!blog.hidden ? (
+                  <BlogEditCard
+                    backendURI={this.props.backendURI}
+                    id={blog.index}
+                    blog={blog}
+                    _handleBlogClick={this._handleBlogClick}
+                  />
+                ) : null}
+              </div>
+            ))}
+          </div>
         </div>
         {/* projects */}
-        <div style={{ margin: "10px" }}>
-          <div style={styles.halfDiv}>
-            <h1>Blogs</h1>
-          </div>
-          <div style={styles.halfDivAlignRight}>
-            <Button variant="success" onClick={this._handleCreateBlog}>
-              New Blog
-            </Button>
-          </div>
-        </div>
-        {this.state.createdProject ? (
-          <Alert variant="success">{this.state.updateMessage}</Alert>
-        ) : null}
-        <div>
-          {this.state.projects.map((project) => (
-            <div key={project.projectName} style={styles.divider}>
-              <a href="/" onClick={this._handleProjectClick} style={styles.link}>
-                <div id={project.index} style={styles.itemTitle}>
-                  {project.projectName}
-                </div>
-                <div id={project.index} style={styles.itemStatus}>
-                  {project.published ? (
-                    <Badge variant="success">Published</Badge>
-                  ) : (
-                    <Badge variant="info">Not Published</Badge>
-                  )}
-                </div>
-                <div id={project.index} style={styles.itemMinMaxIcon}>
-                  {project.hidden ? (
-                    <GrFormAdd id={project.index} />
-                  ) : (
-                    <GrFormSubtract id={project.index} />
-                  )}
-                </div>
-              </a>
-              {!project.hidden ? (
-                <ProjectEditCard
-                  backendURI={this.props.backendURI}
-                  id={project.index}
-                  project={project}
-                  _handleProjectClick={this._handleProjectClick}
-                />
-              ) : null}
+        <div style={styles.sections}>
+          <div style={{ margin: "10px" }}>
+            <div style={styles.halfDiv}>
+              <h1>Projects</h1>
             </div>
-          ))}
+            <div style={styles.halfDivAlignRight}>
+              <Button variant="success" onClick={this._handleCreateProject}>
+                New Project
+              </Button>
+            </div>
+          </div>
+          {this.state.createdProject ? (
+            <Alert variant="success">{this.state.updateMessage}</Alert>
+          ) : null}
+          <div>
+            {this.state.projects.map((project) => (
+              <div key={project.projectName} style={styles.divider}>
+                <a href="/" onClick={this._handleProjectClick} style={styles.link}>
+                  <div id={project.index} style={styles.itemTitle}>
+                    {project.projectName}
+                  </div>
+                  <div id={project.index} style={styles.itemStatus}>
+                    {project.published ? (
+                      <Badge variant="success">Published</Badge>
+                    ) : (
+                      <Badge variant="info">Not Published</Badge>
+                    )}
+                  </div>
+                  <div id={project.index} style={styles.itemMinMaxIcon}>
+                    {project.hidden ? (
+                      <GrFormAdd id={project.index} />
+                    ) : (
+                      <GrFormSubtract id={project.index} />
+                    )}
+                  </div>
+                </a>
+                {!project.hidden ? (
+                  <ProjectEditCard
+                    backendURI={this.props.backendURI}
+                    id={project.index}
+                    project={project}
+                    _handleProjectClick={this._handleProjectClick}
+                  />
+                ) : null}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     )
@@ -239,6 +243,9 @@ class Dashboard extends Component {
 }
 
 const styles = {
+  sections: {
+    marginBottom: "60px"
+  },
   halfDiv: {
     display: "inline-block",
     width: "50%",

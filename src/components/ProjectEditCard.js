@@ -25,7 +25,7 @@ class ProjectEditCard extends Component {
         this.project.newDesc = changedDesc
       }
     }
-    // onChange Blog Published class var dropdown menu
+    // onChange Project Published class var dropdown menu
     newProjectState.onChangePublished = (selectedOption) => {
       this.setState({
         published: selectedOption,
@@ -39,7 +39,7 @@ class ProjectEditCard extends Component {
     // this.endDate = project.endDate
     this.onChangeName = this.project.onChangeName
     this.onChangeDesc = this.project.onChangeDesc
-    this.onChangePublished = this.blog.onChangePublished
+    this.onChangePublished = this.project.onChangePublished
     this.id = id
     this.backendURI = backendURI
     this._handleProjectClick = (event) => _handleProjectClick(event)
@@ -74,7 +74,7 @@ class ProjectEditCard extends Component {
     if (this.desc !== this.project.newDesc) {
       requestBody.projectDesc = this.project.newDesc
     } else {
-      requestBody.projectDesc = this.project.blogDesc
+      requestBody.projectDesc = this.project.projectDesc
     }
     // append the published variable (boolean) to the requestBody
     requestBody.published = this.state.published.value
@@ -84,7 +84,7 @@ class ProjectEditCard extends Component {
       this.setState({
         performedChanges: true,
         updateMessage:
-          "This blog post has been updated... please refresh the page to view changes.",
+          "This project post has been updated... please refresh the page to view changes.",
       })
     } catch (err) {
       // do nothing
@@ -102,7 +102,7 @@ class ProjectEditCard extends Component {
       this.setState({
         performedChanges: true,
         updateMessage:
-          "This blog post has been deleted... please refresh the page to view changes.",
+          "This project post has been deleted... please refresh the page to view changes.",
       })
     } catch (err) {
       // do nothing
@@ -113,8 +113,9 @@ class ProjectEditCard extends Component {
    * Handles click to expand/minimize project content.
    * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
    */
-  _handleCancel = (event) => this._handleBlogClick(event)
+  _handleCancel = (event) => this._handleProjectClick(event)
 
+  //TODO: fix up the UI
   render() {
     const options = [
       { value: true, label: "Yes" },
@@ -123,7 +124,74 @@ class ProjectEditCard extends Component {
 
     return (
       <div>
-        <div>hello</div>
+        <div style={styles.sectionDiv}>
+          {this.state.performedChanges ? (
+            <Alert variant="success">{this.state.updateMessage}</Alert>
+          ) : null}
+          <div style={styles.buttonsDiv}>
+            <Button variant="danger" style={styles.buttonStyle} onClick={this._handleDelete}>
+              Delete
+            </Button>
+          </div>
+          {/* Project Name Section*/}
+          <div>
+            <div style={styles.headerDiv}>
+              {/* Name */}
+              <h5>Name</h5>
+            </div>
+            <div style={styles.editBoxDiv}>
+              {/* Project Name Edit Box */}
+              <Editor
+                id={this.project._id}
+                currentContent={this.name}
+                onChangeState={this.onChangeName}
+              />
+            </div>
+          </div>
+          {/* Project Description Section */}
+          <div>
+            <div style={styles.headerDiv}>
+              {/* Description */}
+              <h5>Description</h5>
+            </div>
+            <div style={styles.editBoxDiv}>
+              {/* Project Description Edit Box */}
+              <Editor
+                id={this.project._id}
+                currentContent={this.desc}
+                onChangeState={this.onChangeDesc}
+              />
+            </div>
+          </div>
+          {/* Project Published Section */}
+          <div>
+            <div style={styles.headerDiv}>
+              {/* Published*/}
+              <h5>Published?</h5>
+            </div>
+            <div style={styles.editBoxDiv}>
+              {/* Project Published Dropdown menu */}
+              <Select
+                value={this.state.published}
+                onChange={this.onChangePublished}
+                options={options}
+              />
+            </div>
+          </div>
+        </div>
+        <div style={styles.buttonsDiv}>
+          <Button style={styles.buttonStyle} onClick={this._handleSave}>
+            Save
+          </Button>
+          <Button
+            id={this.id}
+            variant="secondary"
+            style={styles.buttonStyle}
+            onClick={this._handleCancel}
+          >
+            Cancel
+          </Button>
+        </div>
       </div>
     )
   }
