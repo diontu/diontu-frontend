@@ -2,6 +2,12 @@ import React, { Component } from "react"
 import { withRouter } from "react-router-dom"
 import axios from "axios"
 import { Alert } from "react-bootstrap"
+import styled from "styled-components"
+
+const PasswordInput = styled.input`
+  -webkit-text-security: disc;
+  text-security: disc;
+`
 
 /**
  * Login Page. Used for authentication.
@@ -35,6 +41,15 @@ class Login extends Component {
     this.setState({
       [event.target.name]: event.target.value,
     })
+  }
+
+    /**
+   * Handles onFocus.
+   * @param {React.MouseEvent<HTMLButtonElement, MouseEvent>} event
+   */
+  handleOnFocus = (event) => {
+    //disables autocomplete
+    event.target.setAttribute("autocomplete","new-password")
   }
 
   /**
@@ -75,12 +90,13 @@ class Login extends Component {
           ></input>
         </div>
         <div>
-          <input
+          <PasswordInput
             type="text"
             name="password"
             placeholder="password"
+            onFocus={this.handleOnFocus}
             onChange={this.handleChange}
-          ></input>
+          ></PasswordInput>
         </div>
         <button onClick={this.submitForm}>Log in</button>
       </div>

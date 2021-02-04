@@ -36,13 +36,14 @@ const styles = {
     position: "relative",
     width: "auto",
     minHeight: "4em",
-    maxHeight: "200px",
+    maxHeight: "400px",
     overflow: "auto",
     padding: "5px",
     margin: "10px",
     textAlign: "left",
     border: "1px solid gray",
     borderRadius: "5px",
+    fontFamily: "Courier"
   },
 }
 
