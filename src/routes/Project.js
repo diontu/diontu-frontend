@@ -41,7 +41,7 @@ class Project extends Component {
         <h1>{this.state.project.projectName}</h1>
         <div style={styles.datesDiv}>
           <div><span style={styles.customDates}>Start Date:</span> {dateParser(this.state.project.startDate)}</div>
-          <div><span style={styles.customDates}>End Date:</span> {dateParser(this.state.project.endDate)}</div>
+          <div><span style={styles.customDates}>End Date:</span> {this.state.project.inProgress? "In Progress...": dateParser(this.state.project.endDate)}</div>
         </div>
         <Markdown>{this.state.project.projectDesc}</Markdown>
       </div>

@@ -8,7 +8,7 @@ export const processUrl = (contextPath, value) => {
 }
 
 /**
- * Returns the date in the format "2003-03-21".
+ * Returns the date in the format "YYYY-MMM-DD" (e.g. 1998-Jan-21). 
  * @param {String} dateString
  */
 export const dateParser = (dateString) => {
@@ -54,6 +54,8 @@ export const dateParser = (dateString) => {
       break
     case 11: 
       month = "Dec"
+      break
+    default:
       break
   }
   return year + "-" + month + "-" + day

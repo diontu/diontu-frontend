@@ -47,6 +47,12 @@ class ProjectEditCard extends Component {
         endDate: date,
       })
     }
+    // onChange Project In Progress class var dropdown menu
+    newProjectState.onChangeInProgress = (selectedOption) => {
+      this.setState({
+        inProgress: selectedOption,
+      })
+    }
     // other class var
     this.project = newProjectState
     this.name = project.projectName
@@ -58,6 +64,7 @@ class ProjectEditCard extends Component {
     this.onChangePublished = this.project.onChangePublished
     this.onChangeStartDate = this.project.onChangeStartDate
     this.onChangeEndDate = this.project.onChangeEndDate
+    this.onChangeInProgress = this.project.onChangeInProgress
     this.id = id
     this.backendURI = backendURI
     this._handleProjectClick = (event) => _handleProjectClick(event)
@@ -66,6 +73,10 @@ class ProjectEditCard extends Component {
       published: {
         value: project.published ? true : false,
         label: project.published ? "Yes" : "No",
+      },
+      inProgress: {
+        value: project.inProgress ? true : false,
+        label: project.inProgress ? "Yes" : "No",
       },
       startDate: parseISO(project.startDate),
       endDate: parseISO(project.endDate),
@@ -99,7 +110,10 @@ class ProjectEditCard extends Component {
     // append start and end dates to the requestBody
     requestBody.startDate = this.state.startDate
     requestBody.endDate = this.state.endDate
+    // append inProgress to the requestBody 
+    requestBody.inProgress = this.state.inProgress.value
     // if performedChanges is true, then make the axios post call
+    console.log(requestBody.inProgress)
     try {
       await axios.put(`${this.backendURI}/projects/${this.project._id}`, requestBody)
       this.setState({
@@ -195,17 +209,35 @@ class ProjectEditCard extends Component {
               onChange={this.onChangeStartDate}
             />
           </div>
-          {/* Project End Date Section */}
+          {/* Project In Progress Section */}
           <div>
             <div style={styles.headerDiv}>
-              {/* Name */}
-              <h5>End Date</h5>
+              {/* Published*/}
+              <h5>In Progress?</h5>
             </div>
-            <DatePicker
-              selected={this.state.endDate}
-              onChange={this.onChangeEndDate}
-            />
+            <div style={styles.editBoxDiv}>
+              {/* Project In Progress Dropdown menu */}
+              <Select
+                value={this.state.inProgress}
+                onChange={this.onChangeInProgress}
+                options={options}
+              />
+            </div>
           </div>
+          {/* Project End Date Section, If In Progress === false*/}
+          {this.state.inProgress.value
+            ? null
+            :  <div>
+                <div style={styles.headerDiv}>
+                  {/* Name */}
+                  <h5>End Date</h5>
+                </div>
+                <DatePicker
+                  selected={this.state.endDate}
+                  onChange={this.onChangeEndDate}
+                />
+              </div>
+          }
           {/* Project Published Section */}
           <div>
             <div style={styles.headerDiv}>
