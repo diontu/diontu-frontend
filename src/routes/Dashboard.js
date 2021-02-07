@@ -141,6 +141,13 @@ class Dashboard extends Component {
       <div style={{ textAlign: "left" }}>
         {/* blogs */}
         <div style={styles.sections}>
+          <Alert variant="primary" style={styles.topDiv}>
+            To change the projects, make manual changes to MongoDB. Make sure each project name or
+            blog name is unique.
+          </Alert>
+          {this.state.createdBlog ? (
+            <Alert variant="success">{this.state.updateMessage}</Alert>
+          ) : null}
           <div style={{ margin: "10px" }}>
             <div style={styles.halfDiv}>
               <h1>Blogs</h1>
@@ -151,13 +158,6 @@ class Dashboard extends Component {
               </Button>
             </div>
           </div>
-          <Alert variant="primary">
-            To change the projects, make manual changes to MongoDB. Make sure each project name or
-            blog name is unique.
-          </Alert>
-          {this.state.createdBlog ? (
-            <Alert variant="success">{this.state.updateMessage}</Alert>
-          ) : null}
           <div>
             {this.state.blogs.map((blog) => (
               <div key={blog.blogTitle} style={styles.divider}>
@@ -243,6 +243,9 @@ class Dashboard extends Component {
 }
 
 const styles = {
+  topDiv: {
+    marginTop: "50px",
+  },
   sections: {
     marginBottom: "60px"
   },

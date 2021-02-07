@@ -45,8 +45,8 @@ class Blog extends Component {
       <div>
         <h1>{this.state.blog.blogTitle}</h1>
         <div style={styles.datesDiv}>
-          <div>Published: {dateParser(this.state.blog.dateCreated)}</div>
-          <div>Last Updated: {dateParser(this.state.blog.dateUpdated)}</div>
+          <div><span style={styles.customDates}>Published:</span> {dateParser(this.state.blog.dateCreated)}</div>
+          <div><span style={styles.customDates}>Last Updated:</span> {dateParser(this.state.blog.dateUpdated)}</div>
         </div>
         <Markdown>{this.state.blog.blogDesc}</Markdown>
       </div>
@@ -57,6 +57,10 @@ class Blog extends Component {
 const styles = {
   datesDiv: {
     marginBottom: "20px",
+    fontSize: "90%"
+  },
+  customDates: {
+    color: "#A9A9A9",
   },
 }
 

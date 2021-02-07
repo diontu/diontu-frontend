@@ -2,7 +2,11 @@ import React, { Component } from "react"
 import Editor from "./Editor"
 import { Alert, Button } from "react-bootstrap"
 import Select from "react-select"
+import DatePicker from "react-datepicker"
 import axios from "axios"
+import { parseISO } from "date-fns"
+
+import "react-datepicker/dist/react-datepicker.css";
 
 class ProjectEditCard extends Component {
   constructor({ backendURI, id, project, _handleProjectClick }) {
@@ -31,15 +35,29 @@ class ProjectEditCard extends Component {
         published: selectedOption,
       })
     }
+    // onChange Project Start Date class var dropdown menu
+    newProjectState.onChangeStartDate = (date) => {
+      this.setState({
+        startDate: date,
+      })
+    }
+    // onChange Project End Date class var dropdown menu
+    newProjectState.onChangeEndDate = (date) => {
+      this.setState({
+        endDate: date,
+      })
+    }
     // other class var
     this.project = newProjectState
     this.name = project.projectName
     this.desc = project.projectDesc
-    // this.startDate = project.startDate
-    // this.endDate = project.endDate
+    this.startDate = project.startDate // -------------------------- startDate
+    this.endDate = project.endDate // ------------------------------- endDate
     this.onChangeName = this.project.onChangeName
     this.onChangeDesc = this.project.onChangeDesc
     this.onChangePublished = this.project.onChangePublished
+    this.onChangeStartDate = this.project.onChangeStartDate
+    this.onChangeEndDate = this.project.onChangeEndDate
     this.id = id
     this.backendURI = backendURI
     this._handleProjectClick = (event) => _handleProjectClick(event)
@@ -49,8 +67,8 @@ class ProjectEditCard extends Component {
         value: project.published ? true : false,
         label: project.published ? "Yes" : "No",
       },
-      //   startDate: dateParser(this.startDate),
-      //   endDate: dateParser(this.endDate),
+      startDate: parseISO(project.startDate),
+      endDate: parseISO(project.endDate),
       performedChanges: false,
       error: false,
       updateMessage: "",
@@ -78,6 +96,9 @@ class ProjectEditCard extends Component {
     }
     // append the published variable (boolean) to the requestBody
     requestBody.published = this.state.published.value
+    // append start and end dates to the requestBody
+    requestBody.startDate = this.state.startDate
+    requestBody.endDate = this.state.endDate
     // if performedChanges is true, then make the axios post call
     try {
       await axios.put(`${this.backendURI}/projects/${this.project._id}`, requestBody)
@@ -162,6 +183,28 @@ class ProjectEditCard extends Component {
                 onChangeState={this.onChangeDesc}
               />
             </div>
+          </div>
+          {/* Project Start Date Section */}
+          <div>
+            <div style={styles.headerDiv}>
+              {/* Name */}
+              <h5>Start Date</h5>
+            </div>
+            <DatePicker
+              selected={this.state.startDate}
+              onChange={this.onChangeStartDate}
+            />
+          </div>
+          {/* Project End Date Section */}
+          <div>
+            <div style={styles.headerDiv}>
+              {/* Name */}
+              <h5>End Date</h5>
+            </div>
+            <DatePicker
+              selected={this.state.endDate}
+              onChange={this.onChangeEndDate}
+            />
           </div>
           {/* Project Published Section */}
           <div>
