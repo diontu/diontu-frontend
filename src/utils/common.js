@@ -14,7 +14,7 @@ export const processUrl = (contextPath, value) => {
 export const dateParser = (dateString) => {
   const date = new Date(dateString)
   let year = date.getFullYear()
-  let monthIndex = date.getMonth() + 1
+  let monthIndex = date.getMonth()
   let day = date.getDate()
   let month
 

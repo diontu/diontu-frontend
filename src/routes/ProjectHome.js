@@ -23,10 +23,13 @@ class ProjectHome extends Component {
     return (
       <div>
         <h1>Projects</h1>
+        <p>Projects are ordered from most recent <strong>(top)</strong> to least recent <strong>(bottom)</strong>.</p>
         <div>
           {this.state.projects.map((project) => (
             <div key={project._id}>
-              {project.published ? <a href={processUrl("/project", project.projectName)}>{project.projectName}</a> : null}
+              <ul>
+                {project.published ? <li><a href={processUrl("/project", project.projectName)}>{project.projectName}</a></li> : null}
+              </ul>
             </div>
           ))}
         </div>
