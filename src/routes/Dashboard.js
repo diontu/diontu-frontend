@@ -141,10 +141,6 @@ class Dashboard extends Component {
       <div style={{ textAlign: "left" }}>
         {/* blogs */}
         <div style={styles.sections}>
-          <Alert variant="primary" style={styles.topDiv}>
-            To change the projects, make manual changes to MongoDB. Make sure each project name or
-            blog name is unique.
-          </Alert>
           {this.state.createdBlog ? (
             <Alert variant="success">{this.state.updateMessage}</Alert>
           ) : null}
@@ -243,11 +239,8 @@ class Dashboard extends Component {
 }
 
 const styles = {
-  topDiv: {
-    marginTop: "50px",
-  },
   sections: {
-    marginBottom: "60px"
+    marginTop: "50px"
   },
   halfDiv: {
     display: "inline-block",
