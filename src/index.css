@@ -20,6 +20,13 @@ p {
   margin-bottom: 30px;
 }
 
+img {
+  max-width: 900px;
+  max-height: 600px;
+  border: solid #808080;
+  border-width: 1px;
+}
+
 pre {
   display: block;
   background-color: #f5f5f5;
