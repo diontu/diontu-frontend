@@ -13,6 +13,7 @@ import { GrFormAdd, GrFormSubtract } from "react-icons/gr"
 class Dashboard extends Component {
   constructor(props) {
     super(props)
+    // this.focusRef = React.createRef()
     this.state = {
       numberOfItems: 0,
       blogs: [],
@@ -66,6 +67,12 @@ class Dashboard extends Component {
     }
   }
 
+  componentDidUpdate() {
+    // if (this.state.createdBlog || this.state.createdProject) {
+    //   this.focusRef.current.scrollIntoView()
+    // }
+  }
+
   /**
    * Handles click to expand/minimize blog content.
    * @param {React.MouseEvent<HTMLElement, MouseEvent>} event
@@ -108,8 +115,8 @@ class Dashboard extends Component {
         blogDesc: "New Blog Description",
       })
       this.setState({
-        createdProject: true,
-        updateMessage: "Created new Project... Refresh the page to see the changes!",
+        createdBlog: true,
+        updateMessage: "Created new Blog... Refresh the page to see the changes!",
       })
     } catch (err) {
       // do nothing
@@ -128,8 +135,8 @@ class Dashboard extends Component {
         projectDesc: "New Project Description",
       })
       this.setState({
-        createdBlog: true,
-        updateMessage: "Created new project... Refresh the page to see the changes!",
+        createdProject: true,
+        updateMessage: "Created new Project... Refresh the page to see the changes!",
       })
     } catch (err) {
       // do nothing
@@ -142,7 +149,12 @@ class Dashboard extends Component {
         {/* blogs */}
         <div style={styles.sections}>
           {this.state.createdBlog ? (
-            <Alert variant="success">{this.state.updateMessage}</Alert>
+            <Alert 
+              variant="success" 
+              // ref={this.focusRef}
+            >
+              {this.state.updateMessage}
+            </Alert>
           ) : null}
           <div style={{ margin: "10px" }}>
             <div style={styles.halfDiv}>
@@ -197,7 +209,12 @@ class Dashboard extends Component {
             </div>
           </div>
           {this.state.createdProject ? (
-            <Alert variant="success">{this.state.updateMessage}</Alert>
+            <Alert 
+              variant="success"
+              // ref={this.focusRef}
+            >
+              {this.state.updateMessage}
+            </Alert>
           ) : null}
           <div>
             {this.state.projects.map((project) => (
