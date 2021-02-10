@@ -14,7 +14,7 @@ class Contact extends Component {
           reach me.
         </p>
         <p>
-          <strong>Email: </strong>diontu1@gmail.com
+          <strong>Email: </strong><a href="mailto:diontu1@gmail.com" target="_blank">diontu1@gmail.com</a>
           <br />I check my emails frequently so if you have questions about my background, business
           inquiries or other concerns, send me an email.
         </p>
