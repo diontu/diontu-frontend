@@ -16,6 +16,7 @@ export const WebHeader = styled.h1`
 export const NavBar = {
   Div: styled.div`
     padding: 10px;
+    padding-top: 0px;
     margin-bottom: 30px;
     vertical-align: baseline;
     text-align: center;
