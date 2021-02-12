@@ -19,7 +19,7 @@ class BlogCard extends Component {
     return (
       <Card style={styles.card}>
         <Card.Body>
-          <Card.Title>{this.blog.blogTitle}</Card.Title>
+          <Card.Title><strong>{this.blog.blogTitle}</strong></Card.Title>
           <Card.Text>{this.blog.blogPreview}</Card.Text>
           <Card.Link href={this.urlPath}>More...</Card.Link>
         </Card.Body>

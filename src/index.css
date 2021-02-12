@@ -4,6 +4,7 @@ html {
 
 body {
   margin: 0;
+  font-size: medium;
   font-family: "Open Sans", sans-serif, "Courier", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -12,12 +13,27 @@ body {
 }
 
 h1 {
+  font-size: 35px;
   margin-bottom: 30px;
+  font-weight: lighter;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+h3 {
+  font-size: 25px;
+  font-weight: normal;
+  letter-spacing: 1px;
 }
 
 p {
   margin-top: 12px;
   margin-bottom: 30px;
+  line-height: 25px;
 }
 
 img {

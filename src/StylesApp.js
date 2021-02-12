@@ -10,6 +10,7 @@ export const Container = styled.div`
 `
 
 export const WebHeader = styled.h1`
+  margin: 40px;
   text-decoration: none;
 `
 

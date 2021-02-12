@@ -98,13 +98,14 @@ class App extends Component {
             textAlign: "center",
             margin: "auto",
             width: "900px",
-            marginTop: "30px",
+            marginTop: "50px",
             marginBottom: "50px",
           }}
         >
           <WebHeader>
             <a href="/" style={{ textDecoration: "none", color: "black"}}>
-              <img style={{border: "none", height: "80px", width: "80px"}} src={window.location.origin + "/Dion_logo_rounded.png"} alt="logo"/>
+              {/* <img style={{border: "none", height: "80px", width: "80px"}} src={window.location.origin + "/Dion_logo_rounded.png"} alt="logo"/> */}
+              <h1>Dion Tu</h1>
             </a>
           </WebHeader>
           <NavBar.Div>
