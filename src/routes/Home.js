@@ -34,7 +34,7 @@ class Home extends Component {
         <p>
           I'm a web developer and a backend solutions enthusiast. I've worked as a developer at TD
           Bank, maintaining and adding features to an internal web application using both frontend
-          and backend technologies. I was also a Research Intern for an audio research lab at York
+          and backend technologies. I have also worked as a Research Intern at an audio research lab at York
           University, designing and maintaining the public website, as well as contributing to a
           large-scale dataset. I'm currently in my final year at the Lassonde School of Engineering
           at York University with expected graduation date of June 2021.

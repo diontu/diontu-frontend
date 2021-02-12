@@ -105,7 +105,7 @@ class App extends Component {
           <WebHeader>
             <a href="/" style={{ textDecoration: "none", color: "black"}}>
               {/* <img style={{border: "none", height: "80px", width: "80px"}} src={window.location.origin + "/Dion_logo_rounded.png"} alt="logo"/> */}
-              <h1>Dion Tu</h1>
+              <h1 style={{ fontSize: "45px" }}>Dion Tu</h1>
             </a>
           </WebHeader>
           <NavBar.Div>
