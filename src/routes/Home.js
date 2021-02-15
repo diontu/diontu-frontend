@@ -32,7 +32,7 @@ class Home extends Component {
         </p>
         <h3>About Me</h3>
         <p>
-          I'm a web developer and a backend solutions enthusiast. I've worked as a developer at TD
+          I'm a Toronto-based web developer and a backend solutions enthusiast. I've worked as a developer at TD
           Bank, maintaining and adding features to an internal web application using both frontend
           and backend technologies. I have also worked as a Research Intern at an audio research lab at York
           University, designing and maintaining the public website, as well as contributing to a
