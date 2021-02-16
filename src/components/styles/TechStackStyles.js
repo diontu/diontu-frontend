@@ -18,12 +18,18 @@ export const TechTitle = styled.div`
 export const TechRow = styled.div`
   text-align: left;
   padding: 9px;
-  padding-left: 30px;
-  padding-right: 30px;
+  padding-left: 25px;
+  padding-right: 25px;
 `
 
 export const Tech = styled.span`
-  margin: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 15px;
+  margin-right: 15px;
+  @media (max-width: 899px) {
+    display: inline-block;
+  }
 `
 
 export const TechPopup = styled(Popup)`

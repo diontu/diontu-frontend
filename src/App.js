@@ -2,6 +2,9 @@ import React, { Component } from "react"
 import Socials from "./components/Socials"
 import { Route, Switch } from "react-router-dom"
 import { Container, NavBar, WebHeader } from "./StylesApp"
+import MediaQuery from "react-responsive"
+import { GoThreeBars } from "react-icons/go"
+import { Card } from "react-bootstrap"
 
 import Home from "./routes/Home"
 import About from "./routes/About"
@@ -36,6 +39,7 @@ class App extends Component {
     this.state = {
       isAdminLink: false,
       active: window.location.pathname,
+      menuClicked: false,
     }
   }
 
@@ -72,6 +76,11 @@ class App extends Component {
     this.setState({ active: menuItem })
   }
 
+  _handleMenuClick =  (event) => {
+    event.preventDefault()
+    this.setState({ menuClicked: !this.state.menuClicked})
+  }
+
   render() {
     const backendURI = "https://api-dion-website.herokuapp.com"
 
@@ -97,9 +106,11 @@ class App extends Component {
           style={{
             textAlign: "center",
             margin: "auto",
-            width: "900px",
+            maxWidth: "900px",
             marginTop: "50px",
             marginBottom: "50px",
+            paddingLeft: "20px",
+            paddingRight: "20px",
           }}
         >
           <WebHeader>
@@ -110,24 +121,56 @@ class App extends Component {
           </WebHeader>
           <NavBar.Div>
             <NavBar.Links>
-              {links
-                ? links.map((link) =>
-                    !link.hidden ? (
-                      <NavBar.LinkItem
-                        key={link.path}
-                        href={link.path}
-                        style={
-                          this.state.active === link.path
-                            ? { color: "black", fontWeight: "bold" }
-                            : {}
-                        }
-                        onClick={this._handleClick.bind(this, link.path)}
-                      >
-                        {link.name}
-                      </NavBar.LinkItem>
-                    ) : null
-                  )
-                : null}
+              <MediaQuery minWidth={styles.minBigScreenWidth}>
+                {links
+                  ? links.map((link) =>
+                      !link.hidden ? (
+                        <NavBar.LinkItem
+                          key={link.path}
+                          href={link.path}
+                          style={
+                            this.state.active === link.path
+                              ? { color: "black", fontWeight: "bold" }
+                              : {}
+                          }
+                          onClick={this._handleClick.bind(this, link.path)}
+                        >
+                          {link.name}
+                        </NavBar.LinkItem>
+                      ) : null
+                    )
+                  : null}
+              </MediaQuery>
+              <MediaQuery maxWidth={styles.maxSmallScreenWidth}>
+                <a href="/" onClick={this._handleMenuClick}>
+                  <GoThreeBars 
+                    size={styles.threeBars.size}
+                    color={styles.threeBars.color}
+                  />
+                </a>
+                {this.state.menuClicked
+                  ? <div style={{ marginTop: "20px" }}>
+                      {links.map((link) =>
+                        !link.hidden ? (
+                          <Card key={link.path} style={styles.card}>
+                            <Card.Link
+                              href={link.path}
+                              style={
+                                this.state.active === link.path
+                                  ? { color: "black", fontWeight: "bold", fontSize: "20px" }
+                                  : { color: "#A8A8A8", fontSize: "20px" }
+                              }
+                              onClick={this._handleClick.bind(this, link.path)}
+                            >
+                              {link.name}
+                            </Card.Link>
+                          </Card>
+                        ) : null
+                      )}
+                    </div>
+                  : null}
+
+              </MediaQuery>
             </NavBar.Links>
           </NavBar.Div>
           <Container>
@@ -152,6 +195,25 @@ class App extends Component {
       )
     }
   }
+}
+
+const styles = {
+  maxSmallScreenWidth: 640,
+  minBigScreenWidth: 641,
+  threeBars: {
+    size: "33px",
+    color: "#000000"
+  },
+  card: {
+    width: "auto",
+    textAlign: "center",
+    borderLeft: "none",
+    borderRight: "none",
+    borderBottom: "none",
+    borderRadius: "0px",
+    paddingTop: "7px",
+    paddingBottom: "7px",
+  },
 }
 
 export default App

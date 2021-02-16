@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import MediaQuery from "react-responsive"
 import { Rating } from "semantic-ui-react"
 import {
   Tech,
@@ -104,8 +105,14 @@ class TechStack extends Component {
     return (
       <TechContainer>
         {/* <TechTitle>Tech Stack</TechTitle> */}
+        {/* Frontend & Backend */}
         <TechRow>
-          <span styles={styles.techText}>{`Frontend & Backend: `}</span>
+          <MediaQuery minWidth={styles.minBigScreenWidth}>
+            <span styles={styles.techText}>{`Frontend & Backend: `}</span>
+          </MediaQuery>
+          <MediaQuery maxWidth={styles.maxSmallScreenWidth}>
+            <div styles={styles.techText}>{`Frontend & Backend:`}</div>
+          </MediaQuery>
           {techFrontendBackendDB.map(({ name, reason, proficiency, Component }) => (
             <Tech key={name}>
               <TechPopup
@@ -125,8 +132,14 @@ class TechStack extends Component {
             </Tech>
           ))}
         </TechRow>
+        {/* DevOps */}
         <TechRow>
-          <span>{`DevOps: `}</span>
+          <MediaQuery minWidth={styles.minBigScreenWidth}>
+            <span styles={styles.techText}>{`DevOps: `}</span>
+          </MediaQuery>
+          <MediaQuery maxWidth={styles.maxSmallScreenWidth}>
+            <div styles={styles.techText}>{`DevOps:`}</div>
+          </MediaQuery>
           {techDevOps.map(({ name, reason, proficiency, Component }) => (
             <Tech key={name}>
               <TechPopup
@@ -146,8 +159,14 @@ class TechStack extends Component {
             </Tech>
           ))}
         </TechRow>
+        {/* Others */}
         <TechRow>
-          <span>{`Others: `}</span>
+          <MediaQuery minWidth={styles.minBigScreenWidth}>
+            <span styles={styles.techText}>{`Others: `}</span>
+          </MediaQuery>
+          <MediaQuery maxWidth={styles.maxSmallScreenWidth}>
+            <div styles={styles.techText}>{`Others:`}</div>
+          </MediaQuery>
           {techOthers.map(({ name, reason, proficiency, Component }) => (
             <Tech key={name}>
               <TechPopup
@@ -176,7 +195,8 @@ const styles = {
   techText: {
     fontSize: "40px",
   },
-
+  minBigScreenWidth: 900,
+  maxSmallScreenWidth: 899,
 }
 
 export default TechStack
