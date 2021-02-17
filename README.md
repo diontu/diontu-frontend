@@ -1,3 +1,3 @@
 ## My Website!
 
-(Click here for the website)[www.diontu.com]
+[Click here for the website](www.diontu.com)
