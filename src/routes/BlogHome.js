@@ -17,7 +17,11 @@ class Blog extends Component {
     try {
       const blogs = await axios.get(`${this.props.backendURI}/blogs`)
       this.setState({
-        blogs: blogs.data,
+        blogs: blogs.data.sort(function compare(a, b) {
+          var dateA = new Date(a.dateCreated);
+          var dateB = new Date(b.dateCreated);
+          return dateA - dateB;
+        }).reverse(),
       })
     } catch (err) {}
   }

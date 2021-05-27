@@ -58,5 +58,5 @@ export const dateParser = (dateString) => {
     default:
       break
   }
-  return year + "-" + month + "-" + day
+  return month + " " + day + ", " + year;
 }
